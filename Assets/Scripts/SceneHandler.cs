@@ -22,6 +22,18 @@ public class SceneHandler : MonoBehaviour
         SceneManager.LoadScene("Level 1");
     }
 
+    public void LoadMainMenu()
+    {
+        Debug.Log("Returning to main menu");
+        SceneManager.LoadScene("Main Menu");
+    }
+
+    public void LoadLevelSelect()
+    {
+        Debug.Log("Going to level select menu");
+        SceneManager.LoadScene("Level Select");
+    }
+
     public void QuitGame()
     {
         Application.Quit(); // TODO: Add "Are you sure?" message

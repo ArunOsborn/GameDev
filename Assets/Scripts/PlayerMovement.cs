@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -37,5 +38,19 @@ public class PlayerMovement : MonoBehaviour
             controller.Move(movementVector);
             Debug.Log("Jump!");
         }
+    }
+
+    void OnHorizontal(InputValue inputValue)
+    {
+        movementVector.x = inputValue.Get<float>();
+        controller.Move(movementVector);
+        Debug.Log("Moved");
+    }
+
+    void OnJump()
+    {
+        movementVector.y = jumpSpeed;
+        controller.Move(movementVector);
+        Debug.Log("Jump2!");
     }
 }
