@@ -12,19 +12,31 @@ public class PlayerMovement : MonoBehaviour
     CharacterController controller;
     Vector3 movementVector;
 
+    public PlayerControls playerControls;
+    private InputAction move;
 
+    private void OnEnable()
+    {
+        playerControls.Enable();
+        move = playerControls.Player.Move;
+        move.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerControls.Disable();
+        move.Disable();
+    }
 
     private void Awake()
     {
+        playerControls = new PlayerControls();
         controller = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        float hMovement = Input.GetAxis("Horizontal");
-        movementVector.x = hMovement * speed;
-
         movementVector.y += -gravity;
 
         controller.Move(movementVector);
@@ -32,25 +44,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Jump") && controller.isGrounded)
+        Vector2 xy = move.ReadValue<Vector2>();
+        movementVector.x = xy.x * speed;
+        if (xy.y>0 && controller.isGrounded)
         {
             movementVector.y = jumpSpeed;
             controller.Move(movementVector);
             Debug.Log("Jump!");
         }
-    }
-
-    void OnHorizontal(InputValue inputValue)
-    {
-        movementVector.x = inputValue.Get<float>();
-        controller.Move(movementVector);
-        Debug.Log("Moved");
-    }
-
-    void OnJump()
-    {
-        movementVector.y = jumpSpeed;
-        controller.Move(movementVector);
-        Debug.Log("Jump2!");
     }
 }
