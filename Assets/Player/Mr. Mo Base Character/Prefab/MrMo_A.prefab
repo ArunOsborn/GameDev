@@ -524,6 +524,8 @@ GameObject:
   - component: {fileID: 9567838}
   - component: {fileID: 8888300752295515086}
   - component: {fileID: 8326527402804290861}
+  - component: {fileID: 8724049258070256560}
+  - component: {fileID: 2152647594397868552}
   m_Layer: 0
   m_Name: MrMo_A
   m_TagString: Untagged
@@ -583,6 +585,8 @@ MonoBehaviour:
   speed: 0.2
   jumpSpeed: 0.5
   gravity: 0.02
+  maxJump: 0.25
+  rotationHeight: 0
 --- !u!143 &8326527402804290861
 CharacterController:
   m_ObjectHideFlags: 0
@@ -601,6 +605,33 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.42, z: 0}
+--- !u!114 &8724049258070256560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f8d17cbb15d5a9438b86560279b316e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 417982}
+  respawnPoint: {fileID: 0}
+--- !u!65 &2152647594397868552
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105016}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.94704676, z: 1.6527627}
+  m_Center: {x: 0, y: 2.8119, z: 0.0025582903}
 --- !u!1 &105282
 GameObject:
   m_ObjectHideFlags: 0
