@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Obstacle
   - Swing
+  - TemporaryPlatform
   layers:
   - Default
   - TransparentFX

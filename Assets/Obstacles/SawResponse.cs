@@ -8,19 +8,6 @@ public class SawResponse : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Transform respawnPoint;
 
-
-    void OnCollisionEnter(Collision other)
-    {
-
-        Debug.Log("HIT");
-
-        if (other.collider.CompareTag("Player"))
-        {
-
-            Destroy(other.gameObject);
-        }
-    }
-
     void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Obstacle")

@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         {
             movementVector.y = 0;
         }
-        Debug.Log(movementVector.x + ", " + movementVector.y);
+        //Debug.Log(movementVector.x + ", " + movementVector.y);
         controller.Move(movementVector);
     }
 
