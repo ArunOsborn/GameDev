@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SawResponse : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private Transform player;
     [SerializeField] private Transform respawnPoint;
