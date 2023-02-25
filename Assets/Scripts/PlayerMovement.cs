@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody rBody;
 
+    public bool Grounded;
+
     // Variable jumping
     public float maxJump = 0.25f;
     private float jumpDuration;
@@ -48,16 +50,23 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!controller.isGrounded && !swinging)
+        if (Grounded || swinging)
         {
-            movementVector.y += -gravity;
+            movementVector.y = -0.02f; // Keeps player stuck to ground
         }
         else
         {
-            movementVector.y = 0;
+            if (move.ReadValue<Vector2>().y > 0 && jumpDuration<maxJump)
+            {
+                jumpDuration += Time.fixedDeltaTime;
+            }
+            else
+                movementVector.y += -gravity;
+
         }
-        Debug.Log(movementVector.x + ", " + movementVector.y);
+        //Debug.Log(movementVector.x + ", " + movementVector.y);
         controller.Move(movementVector);
+        Grounded = controller.isGrounded;
     }
 
     private void Update()
@@ -78,21 +87,16 @@ public class PlayerMovement : MonoBehaviour
         }
         if (xy.y>0)
         {
-            if (controller.isGrounded)
+            if (Grounded)
             {
                 // TODO: Check the player isn't hitting something above them to do the next part
                 movementVector.y = jumpSpeed;
                 //controller.Move(movementVector);
                 Debug.Log("Jump!");
-                while ((move.ReadValue<Vector2>().y > 0.9f) && jumpDuration < maxJump)
-                {
-                    jumpDuration += Time.deltaTime;
-                    //Debug.Log(Time.deltaTime);
-                    movementVector.y = jumpSpeed;
-                    //Debug.Log("Still jumping with: " + jumpDuration +"s left and force of "+movementVector.y);
-                }
+                movementVector.y = jumpSpeed;
                 jumpDuration = 0;
-                Debug.Log("Jump stopped");
+                Debug.Log("Jump stopped. Movement is: "+movementVector.x + ", " + movementVector.y);
+                Grounded = false;
             }            
         }
     }
