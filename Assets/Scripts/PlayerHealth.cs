@@ -12,12 +12,12 @@ public class PlayerHealth : MonoBehaviour
     void OnCollisionEnter(Collision other)
     {
 
-        Debug.Log("HIT");
+        Debug.Log("HIT on collision enter");
 
         if (other.collider.CompareTag("Player"))
         {
 
-            Destroy(other.gameObject);
+            //Destroy(other.gameObject);
         }
     }
 
