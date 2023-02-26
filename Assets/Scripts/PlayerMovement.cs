@@ -84,8 +84,8 @@ public class PlayerMovement : MonoBehaviour
         {
             if (xy.y > 0) // When player jumps of swing
             {
-                movementOutputVector.x = speed*10; // Use SOHCAHTOA here
-                movementOutputVector.y = jumpSpeed*10;
+                movementOutputVector.x = speed; // Use SOHCAHTOA here
+                movementOutputVector.y = jumpSpeed;
                 swinging = false;
                 Debug.Log("Jumped off swing: " + movementOutputVector.x + ", " + movementOutputVector.y);
             }            
@@ -111,10 +111,16 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "Swing")
         {
             Debug.Log("Entered swing radius");
-            //rBody.freezeRotation = false;
+            this.transform.LookAt(collision.gameObject.transform);
+            this.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x +90, 90, 0);
             pivotPosition = collision.gameObject.transform.position;
-            controller.enabled = false;
             swinging = true;
+        }
+        else if (!Grounded)
+        {
+            jumpDuration = maxJump; // When the player hits something above them, extending the jump doesn't work.
+            movementOutputVector.y = -gravity;
+            Debug.Log("Head hit by non-swing. Stopping jump.");
         }
     }
 
@@ -123,9 +129,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "Swing")
         {
             Debug.Log("Exiting swing radius");
-            //this.GetComponent<Rigidbody>().freezeRotation = true;
-            this.transform.rotation = Quaternion.Euler(0, 0, 0);
-            controller.enabled = true;
+            this.transform.rotation = Quaternion.Euler(0, 90, 0);
             swinging = false;
         }
     }
