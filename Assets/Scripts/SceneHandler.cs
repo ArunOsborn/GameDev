@@ -25,12 +25,14 @@ public class SceneHandler : MonoBehaviour
     public void LoadMainMenu()
     {
         Debug.Log("Returning to main menu");
+        Cursor.visible = true;
         SceneManager.LoadScene("Main Menu");
     }
 
     public void LoadLevelSelect()
     {
         Debug.Log("Going to level select menu");
+        Cursor.visible = true;
         SceneManager.LoadScene("Level Select");
     }
 
