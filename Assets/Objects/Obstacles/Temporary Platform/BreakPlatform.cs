@@ -12,6 +12,9 @@ public class BreakPlatform : MonoBehaviour
         if (beginTimer)
         {
             targetTimeForPlatformToBreak -= Time.deltaTime;
+            Color color = this.GetComponent<MeshRenderer>().material.color;
+            color.a = targetTimeForPlatformToBreak/2;
+            this.GetComponent<MeshRenderer>().material.color = color;
             if (targetTimeForPlatformToBreak <= 0.0f)
             {
                 Destroy(gameObject);

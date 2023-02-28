@@ -8,6 +8,17 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Transform respawnPoint;
 
+    private int lives = 1;
+
+    void LoseLife()
+    {
+        lives--;
+        if (lives <= 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+
 
     void OnCollisionEnter(Collision other)
     {
@@ -21,9 +32,8 @@ public class PlayerHealth : MonoBehaviour
         }
         else if (other.gameObject.tag == "Lava")
         {
-            transform.position = new Vector3(0f, 0f, 0f);
-            Physics.SyncTransforms();
             Debug.Log("Lava collision");
+            LoseLife();
         }
     }
 
@@ -31,15 +41,8 @@ public class PlayerHealth : MonoBehaviour
     {
         if(other.gameObject.tag == "Obstacle")
         {
-            print("HIT");
-            //player.transform.position = respawnPoint.transform.position;
-
-            print("move player");
-
-            print(transform.position);
-            transform.position = new Vector3(0f, 0f, 0f);
-            Physics.SyncTransforms();
-            print(transform.position);
+            LoseLife();
+            print("Hit obstacle");
         }
     }
 
@@ -60,17 +63,5 @@ public class PlayerHealth : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
 
-    }
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
