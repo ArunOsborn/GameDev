@@ -12,12 +12,18 @@ public class PlayerHealth : MonoBehaviour
     void OnCollisionEnter(Collision other)
     {
 
-        Debug.Log("HIT on collision enter");
+        Debug.Log("HIT on collision enter. Tag is"+other.gameObject);
 
         if (other.collider.CompareTag("Player"))
         {
 
             //Destroy(other.gameObject);
+        }
+        else if (other.gameObject.tag == "Lava")
+        {
+            transform.position = new Vector3(0f, 0f, 0f);
+            Physics.SyncTransforms();
+            Debug.Log("Lava collision");
         }
     }
 
