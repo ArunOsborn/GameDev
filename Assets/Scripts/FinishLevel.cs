@@ -10,6 +10,7 @@ public class FinishLevel : MonoBehaviour
         Debug.Log("Finish door hit!");
         if (other.GetComponent<Collider>().CompareTag("Player"))
         {
+            Cursor.visible = true;
             Debug.Log("Back to main menu");
             SceneManager.LoadScene("Main Menu");
         }

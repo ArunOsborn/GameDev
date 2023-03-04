@@ -36,6 +36,13 @@ public class SceneHandler : MonoBehaviour
         SceneManager.LoadScene("Level Select");
     }
 
+    public void LoadOptions()
+    {
+        Debug.Log("Going to options menu");
+        Cursor.visible = true;
+        SceneManager.LoadScene("Options");
+    }
+
     public void QuitGame()
     {
         Application.Quit(); // TODO: Add "Are you sure?" message
