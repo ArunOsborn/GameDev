@@ -8,22 +8,30 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Transform respawnPoint;
 
-    private int lives = 1;
+    public GameObject HUD;
+
+    private int lives = 3;
 
     void LoseLife()
     {
         lives--;
+        Debug.Log("Lives: "+lives);
         if (lives <= 0)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneHandler.LoadMainMenu();
+        }
+        else
+        {
+            HUD.GetComponent<HudController>().RemoveHeart();
+            this.transform.position = respawnPoint.position;
+            Physics.SyncTransforms();
         }
     }
 
 
     void OnCollisionEnter(Collision other)
     {
-
-        Debug.Log("HIT on collision enter. Tag is"+other.gameObject);
+        //Debug.Log("HIT on collision enter. Tag is"+other.gameObject);
 
         if (other.collider.CompareTag("Player"))
         {
@@ -32,7 +40,6 @@ public class PlayerHealth : MonoBehaviour
         }
         else if (other.gameObject.tag == "Lava")
         {
-            Debug.Log("Lava collision");
             LoseLife();
         }
     }
@@ -42,7 +49,7 @@ public class PlayerHealth : MonoBehaviour
         if(other.gameObject.tag == "Obstacle")
         {
             LoseLife();
-            print("Hit obstacle");
+            print("Hit trigger");
         }
     }
 
@@ -51,12 +58,6 @@ public class PlayerHealth : MonoBehaviour
         if (other.gameObject.tag == "Obstacle")
         {
             print("AGAIN");
-            //player.transform.position = respawnPoint.transform.position;
-
-            print("move the player");
-            print(transform.position);
-            transform.position = new Vector3(0f, 0f, 0f);
-            print(transform.position);
         }
     }
 
