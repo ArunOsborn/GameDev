@@ -18,7 +18,7 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Lives: "+lives);
         if (lives <= 0)
         {
-            SceneHandler.LoadMainMenu();
+            GameObject.Find("EventSystem").GetComponent<SceneHandler>().LoadMainMenu();
         }
         else
         {
