@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3843349461689031570}
   - component: {fileID: 6663862707372210825}
   - component: {fileID: 1623566202919999257}
+  - component: {fileID: 8176853808815637686}
   m_Layer: 0
   m_Name: Banana
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 3339046976674495047}
   m_LocalRotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: 479.1802, y: 2.0842745, z: 431.19086}
-  m_LocalScale: {x: 2.54, y: 2.54, z: 2.54}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -115,3 +116,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 8
   m_CollisionDetection: 0
+--- !u!114 &8176853808815637686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3339046976674495047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb5af6a65460e4f0c9656da8d7e08200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 1
+  fadetime: 0.2
