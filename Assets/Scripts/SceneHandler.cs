@@ -17,9 +17,20 @@ public class SceneHandler : MonoBehaviour
 
     }
 
-    public void LoadLevel()
+    public void LoadLeve(int levelNumber)
     {
-        SceneManager.LoadScene("Level 1");
+        PlayerPrefs.SetString("Selected Level", "Level "+levelNumber);
+        Debug.Log("Set level to "+PlayerPrefs.GetString("Selected Level"));
+        ResumeLevel();
+    }
+
+    public void ResumeLevel()
+    {
+        if (PlayerPrefs.GetString("Selected Level") == "")
+            PlayerPrefs.SetString("Selected Level", "Level 1");
+            Debug.Log("Set level to default of level 1");
+        Debug.Log("Loading" + PlayerPrefs.GetString("Selected Level"));
+        SceneManager.LoadSceneAsync(PlayerPrefs.GetString("Selected Level"));
     }
 
     public void LoadMainMenu()
