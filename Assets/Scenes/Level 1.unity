@@ -5976,6 +5976,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 373072999273330095, guid: b242a839bedbdbd479e8c4bab68fca2a,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8952988377416835137, guid: b242a839bedbdbd479e8c4bab68fca2a,
         type: 3}
       propertyPath: HUD
@@ -5986,6 +5991,11 @@ PrefabInstance:
       propertyPath: respawnPoint
       value: 
       objectReference: {fileID: 185303589}
+    - target: {fileID: 9112186791074551871, guid: b242a839bedbdbd479e8c4bab68fca2a,
+        type: 3}
+      propertyPath: speedOfRotation
+      value: 1500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b242a839bedbdbd479e8c4bab68fca2a, type: 3}
 --- !u!1001 &691822890682886108
