@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class AudioSettings : MonoBehaviour
 {
     [SerializeField] private GameObject mainVolumeSlider;
     [SerializeField] private GameObject musicVolumeSlider;
+
+    public AudioMixer mixer;
 
     // Start is called before the first frame update
     void Start()
@@ -20,12 +23,17 @@ public class AudioSettings : MonoBehaviour
     public void SetMainVolume(float volume)
     {
         PlayerPrefs.SetFloat("Main Volume", volume);
+        float currentVol;
+        mixer.GetFloat("MainVolume", out currentVol);
+        Debug.Log("Current main volume is: " + currentVol);
+        mixer.SetFloat("MainVolume", volume);
         Debug.Log("Set main volume to: " + volume);
     }
 
     public void SetMusicVolume(float volume)
     {
         PlayerPrefs.SetFloat("Music Volume", volume);
+        mixer.SetFloat("MusicVolume", volume);
         Debug.Log("Set music volume to: " + volume);
     }
 }
