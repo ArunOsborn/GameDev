@@ -27,6 +27,9 @@ public class PlayerMovement : MonoBehaviour
     bool swinging = false;
     private Vector3 pivotPosition;
 
+    private Animator animator;
+
+
     private void OnEnable()
     {
         playerControls.Enable();
@@ -42,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         playerControls = new PlayerControls();
         controller = GetComponent<CharacterController>();
         rBody = this.GetComponent<Rigidbody>();
@@ -68,9 +72,34 @@ public class PlayerMovement : MonoBehaviour
             else
                 movementOutputVector.y += -gravity;
         }
+
+        
         //Debug.Log(movementVector.x + ", " + movementVector.y);
         controller.Move(movementOutputVector); // Moves the player with values calculated above and in Update()
         Grounded = controller.isGrounded;
+
+
+        if (movementOutputVector.x > 0)
+        {
+            animator.SetBool("isRunningRight", true);
+            animator.SetBool("isRunningLeft", false);
+            bool flipped = movementOutputVector.x < 0;
+            this.transform.rotation = Quaternion.Euler(new Vector2(0f, !flipped ? 90f : 0f));
+            Debug.Log("move right");
+        }
+        else if (movementOutputVector.x < 0)
+        {
+            animator.SetBool("isRunningRight", false);
+            animator.SetBool("isRunningLeft", true);
+            bool flipped = movementOutputVector.x < 0;
+            this.transform.rotation = Quaternion.Euler(new Vector2(0f, flipped ? -90f : 0f));
+            Debug.Log("move left");
+        }
+        else
+        {
+            animator.SetBool("isRunningRight", false);
+            animator.SetBool("isRunningLeft", false);
+        }
     }
 
     private void Update()
