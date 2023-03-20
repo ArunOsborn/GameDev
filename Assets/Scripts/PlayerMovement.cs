@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
 
     CharacterController controller;
     Vector3 movementOutputVector;
+    [SerializeField] private float speedOfRotation;
+    bool ifDirectionChanged = false;
 
     public PlayerControls playerControls;
     private InputAction movementInputVector;
@@ -27,6 +31,9 @@ public class PlayerMovement : MonoBehaviour
     bool swinging = false;
     private Vector3 pivotPosition;
 
+    private Animator animator;
+
+
     private void OnEnable()
     {
         playerControls.Enable();
@@ -42,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         playerControls = new PlayerControls();
         controller = GetComponent<CharacterController>();
         rBody = this.GetComponent<Rigidbody>();
@@ -78,8 +86,28 @@ public class PlayerMovement : MonoBehaviour
             controller.Move(movementOutputVector); // Moves the player with values calculated above and in Update()
 
         }
+
+        
         //Debug.Log(movementVector.x + ", " + movementVector.y);
         Grounded = controller.isGrounded;
+
+        rotatePlayer();
+    }
+
+    public void rotatePlayer()
+    {
+        if(ifDirectionChanged)
+        {
+            //interpolates the rotation to smoothly rotate the player
+            Quaternion left = Quaternion.Euler(0, -90, 0);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, left, speedOfRotation * Time.deltaTime);
+        }
+        else
+        {
+            //interpolates the rotation to smoothly rotate the player
+            Quaternion right = Quaternion.Euler(0, 90, 0);//Quaternion.LookRotation(new Vector3(0,90,0));
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, right, speedOfRotation * Time.deltaTime);
+        }
     }
 
     private void Update()
@@ -110,7 +138,25 @@ public class PlayerMovement : MonoBehaviour
                 //Debug.Log("Jump stopped. Movement is: "+movementOutputVector.x + ", " + movementOutputVector.y);
                 Grounded = false;
             }            
+
         }
+        if (movementOutputVector.x > 0)
+        {
+            ifDirectionChanged = false;
+            animator.SetBool("running", true);
+            Debug.Log("move right");
+        }
+        else if (movementOutputVector.x < 0)
+        {
+            ifDirectionChanged = true;
+            animator.SetBool("running", true);
+            Debug.Log("move left");
+        }
+        else
+        {
+            animator.SetBool("running", false);
+        }
+
     }
 
     private void ExitSwing()
