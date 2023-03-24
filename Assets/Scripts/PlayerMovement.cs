@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (swinging)
         {
-            float rotateForce = movementInputVector.ReadValue<Vector2>().x;
+            float rotateForce = movementInputVector.ReadValue<Vector2>().x; // TODO: move this update to update
             if (rotateForce == 0)
             {
                 rotateForce = this.transform.rotation.eulerAngles.x/20;
