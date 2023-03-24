@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rBody;
 
     [SerializeField] private bool Grounded;
+    private Vector2 m_move;
 
     // Variable jumping
     public float maxJump = 0.25f;
@@ -55,12 +56,18 @@ public class PlayerMovement : MonoBehaviour
         rBody = this.GetComponent<Rigidbody>();
     }
 
+    public void SetMovement(InputAction.CallbackContext context)
+    {
+        m_move = context.ReadValue<Vector2>();
+        Debug.Log("set new movement with x:"+m_move.x + "y:"+m_move.y);
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
         if (swinging)
         {
-            float rotateForce = movementInputVector.ReadValue<Vector2>().x; // TODO: move this update to update
+            float rotateForce = m_move.x; // TODO: move this update to update
             if (rotateForce == 0)
             {
                 rotateForce = this.transform.rotation.eulerAngles.x/20;
@@ -76,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                if (movementInputVector.ReadValue<Vector2>().y > 0 && jumpDuration < maxJump) // Times jump button for higher/lower jumps
+                if (m_move.y > 0 && jumpDuration < maxJump) // Times jump button for higher/lower jumps
                 {
                     jumpDuration += Time.fixedDeltaTime;
                 }
@@ -90,6 +97,8 @@ public class PlayerMovement : MonoBehaviour
         
         //Debug.Log(movementVector.x + ", " + movementVector.y);
         Grounded = controller.isGrounded;
+        //Grounded = true;
+
 
         rotatePlayer();
     }
@@ -112,14 +121,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        Vector2 xy = movementInputVector.ReadValue<Vector2>();
         if (!swinging)
         {
-            movementOutputVector.x = xy.x * speed;
+            movementOutputVector.x = m_move.x * speed;
         }
         else
         {
-            if (xy.y > 0) // When player jumps of swing
+            if (m_move.y > 0) // When player jumps of swing
             {
                 movementOutputVector.x = speed; // Use SOHCAHTOA here
                 movementOutputVector.y = jumpSpeed;
@@ -128,7 +136,7 @@ public class PlayerMovement : MonoBehaviour
                 ExitSwing();
             }            
         }
-        if (xy.y>0)
+        if (m_move.y>0)
         {
             if (Grounded)
             {
@@ -144,13 +152,13 @@ public class PlayerMovement : MonoBehaviour
         {
             ifDirectionChanged = false;
             animator.SetBool("running", true);
-            Debug.Log("move right");
+            //Debug.Log("move right");
         }
         else if (movementOutputVector.x < 0)
         {
             ifDirectionChanged = true;
             animator.SetBool("running", true);
-            Debug.Log("move left");
+            //Debug.Log("move left");
         }
         else
         {
