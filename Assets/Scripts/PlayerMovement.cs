@@ -127,10 +127,10 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if (m_move.y > 0) // When player jumps of swing
+            if (m_move.y <= 0) // When player stops holding jump button
             {
-                movementOutputVector.x = speed; // Use SOHCAHTOA here
-                movementOutputVector.y = jumpSpeed;
+                movementOutputVector.x = Mathf.Cos(transform.rotation.eulerAngles.z)*speed; // Use SOHCAHTOA here
+                movementOutputVector.y = Mathf.Sin(transform.rotation.eulerAngles.z) * speed;
                 swinging = false;
                 Debug.Log("Jumped off swing: " + movementOutputVector.x + ", " + movementOutputVector.y);
                 ExitSwing();
