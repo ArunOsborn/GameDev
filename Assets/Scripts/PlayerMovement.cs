@@ -89,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
 
         
         //Debug.Log(movementVector.x + ", " + movementVector.y);
-        Grounded = controller.isGrounded;
+        Grounded = controller.isGrounded; //change how this is handeled to work better. character controller isgrounded can be buggy
 
         rotatePlayer();
     }
