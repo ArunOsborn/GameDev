@@ -5,10 +5,15 @@ public class CameraFollow : MonoBehaviour {
 
     public Transform target;
 
-    public float smoothspeed = 0.125f;
+    public float smoothSpeed = 0.125f;
     public Vector3 positionOffset;
     public Vector3 angleOffset;
     public bool cameraPreset = true;
+
+    public bool fixYLevel = false;
+    public float yLevel;
+
+    Vector3 exactFollow;
 
     private void Start()
     {
@@ -16,9 +21,11 @@ public class CameraFollow : MonoBehaviour {
     }
     void FixedUpdate ()
     {
-        Vector3 exactfollow = target.position + positionOffset;
-        Vector3 smoothfollow = Vector3.Lerp(transform.position, exactfollow, smoothspeed);
-        transform.position = smoothfollow;
+        exactFollow = target.position + positionOffset;
+        if (fixYLevel)
+            exactFollow.y = (float)yLevel;
+        Vector3 smoothFollow = Vector3.Lerp(transform.position, exactFollow, smoothSpeed);
+        transform.position = smoothFollow;
         
 
         //transform.LookAt(target.position + angleOffset);

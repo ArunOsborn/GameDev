@@ -531,7 +531,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 185303586}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
@@ -1160,10 +1160,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1910942801}
-  smoothspeed: 0.125
+  smoothSpeed: 0.125
   positionOffset: {x: 0, y: 5, z: -35}
   angleOffset: {x: 0, y: 5, z: 0}
   cameraPreset: 1
+  fixYLevel: 1
+  yLevel: 7
 --- !u!82 &330585549
 AudioSource:
   m_ObjectHideFlags: 0
