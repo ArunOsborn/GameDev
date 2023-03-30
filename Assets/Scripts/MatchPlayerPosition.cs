@@ -19,7 +19,7 @@ public class MatchPlayerPosition : MonoBehaviour
     void Update()
     {
         z = GameObject.FindGameObjectWithTag("Player").transform.position.z;
-        y = GameObject.FindGameObjectWithTag("Player").transform.position.y;
+        y = GameObject.FindGameObjectWithTag("Player").transform.position.y + 1.4f;
         x = GameObject.FindGameObjectWithTag("Player").transform.position.x;
         Debug.Log(x + " " + y + " " + z);
         GameObject.FindGameObjectWithTag("CopyPlayerPos").transform.position = new Vector3(x, y, z);
