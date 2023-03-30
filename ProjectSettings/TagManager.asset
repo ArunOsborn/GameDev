@@ -8,6 +8,7 @@ TagManager:
   - Swing
   - TemporaryPlatform
   - Lava
+  - CopyPlayerPos
   layers:
   - Default
   - TransparentFX

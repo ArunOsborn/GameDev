@@ -455,7 +455,7 @@ Transform:
   - {fileID: 1190434699}
   - {fileID: 185303589}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &69975954
 GameObject:
@@ -1344,7 +1344,7 @@ RectTransform:
   - {fileID: 1045927401}
   - {fileID: 926808985}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3789,7 +3789,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &861170136
 MonoBehaviour:
@@ -4065,6 +4065,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 926808984}
   m_CullTransparentMesh: 1
+--- !u!1 &949513451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 949513452}
+  - component: {fileID: 949513453}
+  m_Layer: 0
+  m_Name: CopyPlayerPos
+  m_TagString: CopyPlayerPos
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &949513452
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949513451}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.17, y: 1.88, z: 0.031}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &949513453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949513451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c318528240ad9a340b9fb10b813971ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1032528637
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6556,7 +6600,7 @@ PrefabInstance:
     - target: {fileID: 691822889249155423, guid: 8fe451cad6e364b80b985a71afa365b1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 691822889249155423, guid: 8fe451cad6e364b80b985a71afa365b1,
         type: 3}
@@ -8983,7 +9027,7 @@ CharacterController:
   m_StepOffset: 0.8
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1.64, z: -0.16}
+  m_Center: {x: 0, y: 1.68, z: -0.16}
 --- !u!137 &8349205346629478732
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -9463,7 +9507,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.33, y: 2.6, z: 1.12}
-  m_Center: {x: -0.21, y: 1.58, z: -0.1}
+  m_Center: {x: -0.21, y: 1.5, z: -0.1}
 --- !u!114 &9089717609202255596
 MonoBehaviour:
   m_ObjectHideFlags: 0
