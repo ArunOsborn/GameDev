@@ -18,10 +18,10 @@ public class MatchPlayerPosition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        z = GameObject.FindGameObjectWithTag("Player").transform.position.z;
+        //z = GameObject.FindGameObjectWithTag("Player").transform.position.z;
         y = GameObject.FindGameObjectWithTag("Player").transform.position.y + 1.4f;
         x = GameObject.FindGameObjectWithTag("Player").transform.position.x;
-        Debug.Log(x + " " + y + " " + z);
+        //Debug.Log(x + " " + y + " " + z);
         GameObject.FindGameObjectWithTag("CopyPlayerPos").transform.position = new Vector3(x, y, z);
     }
 }
