@@ -32,7 +32,6 @@ public class MovePiston : MonoBehaviour
             else // Switch movement
             {
                 up = false;
-                Debug.Log("Playing upSound");
                 audioSource.clip = upSound;
                 audioSource.Play();
             }
@@ -46,7 +45,6 @@ public class MovePiston : MonoBehaviour
             else // Switch movement
             {
                 up = true;
-                Debug.Log("Playing downSound");
                 audioSource.clip = downSound;
                 audioSource.Play();
             }
