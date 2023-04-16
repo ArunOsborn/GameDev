@@ -6,13 +6,18 @@ public class MovePiston : MonoBehaviour
 {
     [SerializeField] private float moveDistance;
     [SerializeField] private float moveSpeed;
+    [SerializeField] private AudioClip upSound;
+    [SerializeField] private AudioClip downSound;
 
     private Vector3 startPosition;
     private bool up = true;
 
+    private AudioSource audioSource;
+
     private void Start()
     {
         startPosition = transform.position;
+        audioSource = this.GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
@@ -24,8 +29,13 @@ public class MovePiston : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y - moveSpeed, transform.position.z);
             }
-            else
+            else // Switch movement
+            {
                 up = false;
+                Debug.Log("Playing upSound");
+                audioSource.clip = upSound;
+                audioSource.Play();
+            }
         }
         else
         {
@@ -33,8 +43,13 @@ public class MovePiston : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y + moveSpeed, transform.position.z);
             }
-            else
+            else // Switch movement
+            {
                 up = true;
+                Debug.Log("Playing downSound");
+                audioSource.clip = downSound;
+                audioSource.Play();
+            }
         }
     }
 }
