@@ -9609,16 +9609,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1983991861}
     m_Modifications:
-    - target: {fileID: 1209131601861055076, guid: b9e53f306b4f94c788db7d022bebff4f,
-        type: 3}
-      propertyPath: upSound
-      value: 
-      objectReference: {fileID: 8300000, guid: c12845194541246dab2d57ed373f25ca, type: 3}
-    - target: {fileID: 1209131601861055076, guid: b9e53f306b4f94c788db7d022bebff4f,
-        type: 3}
-      propertyPath: downSound
-      value: 
-      objectReference: {fileID: 8300000, guid: adf901a6749dc4daa804112fdca92ba3, type: 3}
     - target: {fileID: 1209131601861055078, guid: b9e53f306b4f94c788db7d022bebff4f,
         type: 3}
       propertyPath: m_Name
@@ -9678,31 +9668,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7531672002411837313, guid: b9e53f306b4f94c788db7d022bebff4f,
-        type: 3}
-      propertyPath: Loop
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7531672002411837313, guid: b9e53f306b4f94c788db7d022bebff4f,
-        type: 3}
-      propertyPath: m_Volume
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7531672002411837313, guid: b9e53f306b4f94c788db7d022bebff4f,
-        type: 3}
-      propertyPath: MaxDistance
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 7531672002411837313, guid: b9e53f306b4f94c788db7d022bebff4f,
-        type: 3}
-      propertyPath: rolloffMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7531672002411837313, guid: b9e53f306b4f94c788db7d022bebff4f,
-        type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9e53f306b4f94c788db7d022bebff4f, type: 3}

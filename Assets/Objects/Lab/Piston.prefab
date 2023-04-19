@@ -149,8 +149,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveDistance: 5
   moveSpeed: 0.07
-  upSound: {fileID: 0}
-  downSound: {fileID: 0}
+  upSound: {fileID: 8300000, guid: c12845194541246dab2d57ed373f25ca, type: 3}
+  downSound: {fileID: 8300000, guid: adf901a6749dc4daa804112fdca92ba3, type: 3}
+  startUp: 1
 --- !u!82 &7531672002411837313
 AudioSource:
   m_ObjectHideFlags: 0
@@ -164,18 +165,18 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: adf901a6749dc4daa804112fdca92ba3, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 50
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -208,7 +209,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

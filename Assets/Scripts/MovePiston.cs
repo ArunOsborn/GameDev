@@ -9,14 +9,25 @@ public class MovePiston : MonoBehaviour
     [SerializeField] private AudioClip upSound;
     [SerializeField] private AudioClip downSound;
 
+    [SerializeField] private bool startUp = true;
+
     private Vector3 startPosition;
-    private bool up = true;
+    private bool up;
 
     private AudioSource audioSource;
 
     private void Start()
     {
         startPosition = transform.position;
+        if (startUp)
+        {
+            up = true;
+        }
+        else
+        {
+            transform.position = new Vector3(transform.position.x, startPosition.y - moveDistance, transform.position.z);
+            up = false;
+        }
         audioSource = this.GetComponent<AudioSource>();
     }
 
