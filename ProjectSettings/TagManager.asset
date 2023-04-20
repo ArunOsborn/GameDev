@@ -11,6 +11,8 @@ TagManager:
   - CopyPlayerPos
   - Laser
   - Enemy
+  - Platform
+  - GroundPlatform
   layers:
   - Default
   - TransparentFX

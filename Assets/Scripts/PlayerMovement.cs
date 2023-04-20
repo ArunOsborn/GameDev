@@ -48,6 +48,11 @@ public class PlayerMovement : MonoBehaviour
         movementInputVector.Disable();
     }
 
+    public bool getIsGrounded()
+    {
+        return Grounded;
+    }
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
