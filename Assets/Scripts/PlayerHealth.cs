@@ -10,21 +10,50 @@ public class PlayerHealth : MonoBehaviour
 
     public GameObject HUD;
 
-    private int lives = 3;
+    public int lives = 3;
+
+    private bool healthLock = false; // When true, player cannot be hurt
+
+    private void Awake()
+    {
+        /*Debug.Log("This player's lives: " + lives);
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        if (players.Length > 1)
+        {
+            foreach (GameObject player in players)
+            {
+                if (player != this.gameObject)
+                {
+                    Destroy(player);
+                    Debug.Log("Destryed uneeded player :)");
+                }
+            }
+        }
+        DontDestroyOnLoad(this.gameObject);*/
+    }
+
+    private void DoInvincibleTime()
+    {
+        healthLock = false;
+    }
 
     void LoseLife()
     {
-        lives--;
-        Debug.Log("Lives: "+lives);
-        if (lives <= 0)
+        if (healthLock==false)
         {
-            GameObject.Find("EventSystem").GetComponent<SceneHandler>().LoadMainMenu();
-        }
-        else
-        {
-            HUD.GetComponent<HudController>().RemoveHeart();
-            this.transform.position = respawnPoint.position;
-            Physics.SyncTransforms();
+            healthLock = true;
+            Invoke("DoInvincibleTime", 1);
+            lives--;
+            Debug.Log("Lives: " + lives);
+            if (lives <= 0)
+            {
+                SceneManager.LoadSceneAsync(PlayerPrefs.GetString("Selected Level"));
+                GameObject.Find("EventSystem").GetComponent<SceneHandler>().LoadMainMenu();
+            }
+            else
+            {
+                HUD.GetComponent<HudController>().RemoveHeart();
+            }
         }
     }
 

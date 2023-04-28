@@ -59,7 +59,6 @@ public class PlayerMovement : MonoBehaviour
     public void SetMovement(InputAction.CallbackContext context)
     {
         m_move = context.ReadValue<Vector2>();
-        Debug.Log("set new movement with x:"+m_move.x + "y:"+m_move.y);
     }
 
     // Update is called once per frame
@@ -138,6 +137,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (m_move.y>0)
         {
+            Debug.Log("Attempted jump. Grounded=" + Grounded);
             if (Grounded)
             {
                 // TODO: Check the player isn't hitting something above them to do the next part

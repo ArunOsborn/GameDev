@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class GraphicsSettings : MonoBehaviour
 {
+    [SerializeField] private GameObject graphicsTierDropdown;
+
+
+    void Start()
+    {
+        graphicsTierDropdown.GetComponent<TMPro.TMP_Dropdown>().value = PlayerPrefs.GetInt("Graphics Tier") - 1;
+    }
+
     public void SetGraphicsTier(int tier)
     {
         UnityEngine.Graphics.activeTier = UnityEngine.Rendering.GraphicsTier.Tier1;

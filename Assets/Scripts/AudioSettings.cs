@@ -20,7 +20,6 @@ public class AudioSettings : MonoBehaviour
         Debug.Log("Set main volume slider to: " + PlayerPrefs.GetFloat("Main Volume"));
         musicVolumeSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Music Volume");
         sfxVolumeSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("SFX Volume");
-
     }
 
     public void SetMainVolume(float volume)

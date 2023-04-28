@@ -654,7 +654,7 @@ GameObject:
   - component: {fileID: 185303587}
   m_Layer: 0
   m_Name: Respawn Lamp
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -1664,7 +1664,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!108 &410087040
 Light:
@@ -1717,7 +1717,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -4834,8 +4834,8 @@ ReflectionProbe:
   m_TimeSlicingMode: 0
   m_Resolution: 128
   m_UpdateFrequency: 0
-  m_BoxSize: {x: 10, y: 10, z: 10}
-  m_BoxOffset: {x: 0, y: 0, z: 0}
+  m_BoxSize: {x: 24.058613, y: 11.45503, z: 10}
+  m_BoxOffset: {x: 1.2097225, y: -0.7275152, z: 0}
   m_NearClip: 0.3
   m_FarClip: 1000
   m_ShadowDistance: 100
@@ -6433,7 +6433,7 @@ PrefabInstance:
     - target: {fileID: 5504871576586827388, guid: 8fe451cad6e364b80b985a71afa365b1,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ResumeLevel
+      value: RestartLevel
       objectReference: {fileID: 0}
     - target: {fileID: 6461661926697828952, guid: 8fe451cad6e364b80b985a71afa365b1,
         type: 3}
@@ -6687,6 +6687,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3986732010379901368, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5638994023463471152, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
         type: 3}
       propertyPath: HUD
@@ -6697,7 +6702,8 @@ PrefabInstance:
       propertyPath: respawnPoint
       value: 
       objectReference: {fileID: 185303589}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3855984197968940668, guid: 90827ad7d0ca6459bbe81ce1e791c23c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 90827ad7d0ca6459bbe81ce1e791c23c, type: 3}
 --- !u!1001 &6276159882985507595
 PrefabInstance:

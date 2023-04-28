@@ -17,20 +17,28 @@ public class SceneHandler : MonoBehaviour
 
     }
 
-    public void LoadLeve(int levelNumber)
+    public void LoadLevel(int levelNumber)
     {
         PlayerPrefs.SetString("Selected Level", "Level "+levelNumber);
         Debug.Log("Set level to "+PlayerPrefs.GetString("Selected Level"));
         ResumeLevel();
     }
 
+    public void RestartLevel()
+    {
+        ResumeLevel();
+        //SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+    }
+
     public void ResumeLevel()
     {
-        if (PlayerPrefs.GetString("Selected Level") == "")
+        if (PlayerPrefs.GetString("Selected Level") == "") // Defaults to level 1
+        {
             PlayerPrefs.SetString("Selected Level", "Level 1");
             Debug.Log("Set level to default of level 1");
+        }
         Debug.Log("Loading" + PlayerPrefs.GetString("Selected Level"));
-        SceneManager.LoadSceneAsync(PlayerPrefs.GetString("Selected Level"));
+        SceneManager.LoadSceneAsync("Preload");
     }
 
     public void LoadMainMenu()
