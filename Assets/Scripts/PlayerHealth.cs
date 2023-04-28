@@ -53,6 +53,10 @@ public class PlayerHealth : MonoBehaviour
             else
             {
                 HUD.GetComponent<HudController>().RemoveHeart();
+                foreach (Transform child in this.gameObject.GetComponentsInChildren<Transform>())
+                {
+                    child.gameObject.GetComponent<Renderer>().material.color = new Color(20,20,20);
+                }
             }
         }
     }
@@ -86,7 +90,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (other.gameObject.tag == "Obstacle")
         {
-            print("AGAIN");
+            LoseLife();
         }
     }
 
