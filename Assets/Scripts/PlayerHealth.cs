@@ -8,6 +8,9 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Transform respawnPoint;
 
+    [SerializeField] private GameObject body;
+    private Color originalBodyColour;
+
     public GameObject HUD;
 
     public int lives = 3;
@@ -32,9 +35,10 @@ public class PlayerHealth : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);*/
     }
 
-    private void DoInvincibleTime()
+    private void EndInvincibleTime()
     {
         healthLock = false;
+        body.GetComponent<SkinnedMeshRenderer>().material.color = new Color(0.481f, 0.312f, 0.155f);
     }
 
     void LoseLife()
@@ -42,7 +46,7 @@ public class PlayerHealth : MonoBehaviour
         if (healthLock==false)
         {
             healthLock = true;
-            Invoke("DoInvincibleTime", 1);
+            Invoke("EndInvincibleTime", 1);
             lives--;
             Debug.Log("Lives: " + lives);
             if (lives <= 0)
@@ -53,10 +57,14 @@ public class PlayerHealth : MonoBehaviour
             else
             {
                 HUD.GetComponent<HudController>().RemoveHeart();
-                foreach (Transform child in this.gameObject.GetComponentsInChildren<Transform>())
+                Debug.Log("Colour: "+body.GetComponent<SkinnedMeshRenderer>().material.color);
+                SkinnedMeshRenderer renderer = body.GetComponent<SkinnedMeshRenderer>();
+                originalBodyColour = renderer.material.color;
+                renderer.material.color = new Color(originalBodyColour.r+1,originalBodyColour.g,originalBodyColour.b,originalBodyColour.a/2);
+                /*foreach (Transform child in this.gameObject.GetComponentInChildren<Transform>().gameObject.GetComponentsInChildren<Transform>())
                 {
                     child.gameObject.GetComponent<Renderer>().material.color = new Color(20,20,20);
-                }
+                }*/
             }
         }
     }

@@ -2234,6 +2234,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1914195839010780916, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3fba8a71803bf423a816254714b316f4, type: 2}
     - target: {fileID: 3986732010379445054, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
         type: 3}
       propertyPath: m_RootOrder
@@ -2299,6 +2304,11 @@ PrefabInstance:
       propertyPath: HUD
       value: 
       objectReference: {fileID: 281863925}
+    - target: {fileID: 5638994023463471152, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
+        type: 3}
+      propertyPath: body
+      value: 
+      objectReference: {fileID: 1060956537}
     - target: {fileID: 5638994023463471152, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
         type: 3}
       propertyPath: respawnPoint
@@ -4694,6 +4704,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1045927400}
   m_CullTransparentMesh: 1
+--- !u!1 &1060956537 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 351494766828523470, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
+    type: 3}
+  m_PrefabInstance: {fileID: 487360150}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1062834793
 PrefabInstance:
   m_ObjectHideFlags: 0
