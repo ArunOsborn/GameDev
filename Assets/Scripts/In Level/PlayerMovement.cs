@@ -34,6 +34,10 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator animator;
 
+    // Sound Effects
+    private AudioSource audio;
+    [SerializeField] private AudioClip landSound;
+
 
     private void OnEnable()
     {
@@ -54,6 +58,11 @@ public class PlayerMovement : MonoBehaviour
         playerControls = new PlayerControls();
         controller = GetComponent<CharacterController>();
         rBody = this.GetComponent<Rigidbody>();
+    }
+
+    private void Start()
+    {
+        audio = this.GetComponent<AudioSource>();
     }
 
     public void SetMovement(InputAction.CallbackContext context)
@@ -137,13 +146,14 @@ public class PlayerMovement : MonoBehaviour
         }
         if (m_move.y>0)
         {
-            Debug.Log("Attempted jump. Grounded=" + Grounded);
+            //Debug.Log("Attempted jump. Grounded=" + Grounded);
             if (Grounded)
             {
                 // TODO: Check the player isn't hitting something above them to do the next part
                 movementOutputVector.y = jumpSpeed;
                 jumpDuration = 0;
                 //Debug.Log("Jump stopped. Movement is: "+movementOutputVector.x + ", " + movementOutputVector.y);
+                animator.SetBool("jump", true);
                 Grounded = false;
             }            
 
@@ -196,6 +206,14 @@ public class PlayerMovement : MonoBehaviour
             jumpDuration = maxJump; // When the player hits something above them, extending the jump doesn't work.
             movementOutputVector.y = -gravity;
             Debug.Log("Head hit by non-swing. Stopping jump.");
+        }
+        else
+        {
+            // Plays landing sound
+            audio.clip = landSound;
+            audio.Play();
+            Debug.Log("Played landing sound");
+            animator.SetBool("jump", false);
         }
     }
     private void OnTriggerExit(Collider other)
