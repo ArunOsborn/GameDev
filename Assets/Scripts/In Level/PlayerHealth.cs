@@ -35,10 +35,15 @@ public class PlayerHealth : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);*/
     }
 
+    private void Start()
+    {
+        body = transform.Find("Body").gameObject;
+    }
+
     private void EndInvincibleTime()
     {
         healthLock = false;
-        body.GetComponent<SkinnedMeshRenderer>().material.color = new Color(0.481f, 0.312f, 0.155f);
+        body.GetComponent<SkinnedMeshRenderer>().material.color = originalBodyColour;
     }
 
     void LoseLife()
@@ -60,7 +65,7 @@ public class PlayerHealth : MonoBehaviour
                 Debug.Log("Colour: "+body.GetComponent<SkinnedMeshRenderer>().material.color);
                 SkinnedMeshRenderer renderer = body.GetComponent<SkinnedMeshRenderer>();
                 originalBodyColour = renderer.material.color;
-                renderer.material.color = new Color(originalBodyColour.r+1,originalBodyColour.g,originalBodyColour.b,originalBodyColour.a/2);
+                renderer.material.color = new Color(originalBodyColour.r+0.2f,originalBodyColour.g,originalBodyColour.b,originalBodyColour.a/2);
                 /*foreach (Transform child in this.gameObject.GetComponentInChildren<Transform>().gameObject.GetComponentsInChildren<Transform>())
                 {
                     child.gameObject.GetComponent<Renderer>().material.color = new Color(20,20,20);
