@@ -26,15 +26,19 @@ public class EnemyAIPathfinding : MonoBehaviour
 
     private Path path;
     private int currentWaypoint = 0;
-    bool isGrounded = false;
+    public bool isGrounded;
     Seeker seeker;
     Rigidbody rb;
     private Animator animator;
-    private Transform currentPointB;
+    private Transform currentPoint;
     public GameObject PatrolA;
     public GameObject PatrolB;
+    public GameObject CubePatrolA;
+    public GameObject CubePatrolB;
     [SerializeField] private LayerMask levelGround;
     public bool collided;
+    public bool jumpCollided;
+    public bool jumping;
 
     // Start is called before the first frame update
     public void Start()
@@ -42,13 +46,13 @@ public class EnemyAIPathfinding : MonoBehaviour
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        currentPointB = PatrolB.transform;
+        currentPoint = PatrolA.transform;
         animator.SetBool("isRunning", true);
 
         InvokeRepeating("UpdatePath", 0f, pathUpdateSeconds);
     }
 
-        private void flip()
+    private void flip()
     {
         Vector3 local = transform.localScale;
         local.x *= -1;
@@ -64,8 +68,8 @@ public class EnemyAIPathfinding : MonoBehaviour
         }
         else
         {
-            Vector3 point = currentPointB.position - transform.position;
-            if(currentPointB == PatrolB.transform)
+            Vector3 point = currentPoint.position - transform.position;
+            if(currentPoint == PatrolB.transform)
             {
                 rb.AddForce(this.transform.forward * 0.3f, ForceMode.VelocityChange);
             }
@@ -74,16 +78,18 @@ public class EnemyAIPathfinding : MonoBehaviour
                 rb.AddForce(-this.transform.forward * 0.3f, ForceMode.VelocityChange);
             }
 
-            if (Vector2.Distance(transform.position, currentPointB.position) < 0.5f && currentPointB == PatrolB.transform)
+            if(Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == PatrolB.transform)
             {
-                flip();
-                currentPointB = PatrolA.transform;
+                currentPoint = PatrolA.transform;
             }
-            if(Vector2.Distance(transform.position, currentPointB.position) < 0.5f && currentPointB == PatrolA.transform)
+            if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == PatrolA.transform)
             {
-                flip();
-                currentPointB = PatrolB.transform;
+                currentPoint = PatrolB.transform;
             }
+            //if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == PatrolA.transform)
+            //{
+            //    currentPoint = PatrolB.transform;
+            //}
         }
     }
 
@@ -108,8 +114,8 @@ public class EnemyAIPathfinding : MonoBehaviour
             return;
         }
 
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, GetComponent<Collider>().bounds.extents.y + jumpCheckOffset);
-        Debug.Log("GROUNDED VARIABLE = " + isGrounded);
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, GetComponent<CapsuleCollider>().bounds.extents.y);
+        Debug.Log("GROUNDED VARIABLE = " + isGrounded + "\n" + "2nd box trigger: " + jumpCollided);
         Debug.DrawRay(transform.position, Vector3.down, Color.red);
 
         //direction calculation
@@ -122,16 +128,21 @@ public class EnemyAIPathfinding : MonoBehaviour
             Debug.Log("Is Grounded");
             if(direction.y > jumpNodeHeightRequirement)
             {
+                jumping = true;
                 Debug.Log("enemy jump");
                 rb.AddForce(Vector3.up * airSpeed, ForceMode.VelocityChange);
             }
+            else
+            {
+                jumping = false;
+            }
         }
-        
+
         //movement
-        //if(collided)
-        //{
-        //    rb.AddForce(force);
-        //}
+        if (!jumpCollided && !jumping)
+        {
+            rb.AddForce(force, ForceMode.VelocityChange);
+        }
 
         //next waypoint
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
@@ -168,6 +179,21 @@ public class EnemyAIPathfinding : MonoBehaviour
             path = p;
             currentWaypoint = 0;
         }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        //if(other.tag == "JumpCollider")
+        //{
+            if(other.gameObject.layer == LayerMask.NameToLayer("Level"))
+            {
+                jumpCollided = true;
+            }
+            else
+            {
+                jumpCollided = false;
+            }
+        //}
     }
 
     private void OnCollisionEnter(Collision collision)
