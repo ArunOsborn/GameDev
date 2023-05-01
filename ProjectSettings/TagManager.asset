@@ -15,6 +15,7 @@ TagManager:
   - GroundPlatform
   - Nodes
   - JumpCollider
+  - EnemyGround
   layers:
   - Default
   - TransparentFX
