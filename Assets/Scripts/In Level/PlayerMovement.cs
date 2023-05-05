@@ -70,6 +70,22 @@ public class PlayerMovement : MonoBehaviour
         m_move = context.ReadValue<Vector2>();
     }
 
+    public void rotatePlayer()
+    {
+        if (ifDirectionChanged)
+        {
+            //interpolates the rotation to smoothly rotate the player
+            Quaternion left = Quaternion.Euler(0, -90, 0);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, left, speedOfRotation * Time.deltaTime);
+        }
+        else
+        {
+            //interpolates the rotation to smoothly rotate the player
+            Quaternion right = Quaternion.Euler(0, 90, 0);//Quaternion.LookRotation(new Vector3(0,90,0));
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, right, speedOfRotation * Time.deltaTime);
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -105,26 +121,13 @@ public class PlayerMovement : MonoBehaviour
         
         //Debug.Log(movementVector.x + ", " + movementVector.y);
         Grounded = controller.isGrounded;
-        //Grounded = true;
+        if (!Grounded && !swinging)
+            animator.SetBool("jump", true);
+        else
+            animator.SetBool("jump", false);
 
 
         rotatePlayer();
-    }
-
-    public void rotatePlayer()
-    {
-        if(ifDirectionChanged)
-        {
-            //interpolates the rotation to smoothly rotate the player
-            Quaternion left = Quaternion.Euler(0, -90, 0);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, left, speedOfRotation * Time.deltaTime);
-        }
-        else
-        {
-            //interpolates the rotation to smoothly rotate the player
-            Quaternion right = Quaternion.Euler(0, 90, 0);//Quaternion.LookRotation(new Vector3(0,90,0));
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, right, speedOfRotation * Time.deltaTime);
-        }
     }
 
     private void Update()
@@ -153,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
                 movementOutputVector.y = jumpSpeed;
                 jumpDuration = 0;
                 //Debug.Log("Jump stopped. Movement is: "+movementOutputVector.x + ", " + movementOutputVector.y);
-                animator.SetBool("jump", true);
+                //animator.SetBool("jump", true);
                 Grounded = false;
             }            
 
@@ -213,7 +216,7 @@ public class PlayerMovement : MonoBehaviour
             audio.clip = landSound;
             audio.Play();
             Debug.Log("Played landing sound");
-            animator.SetBool("jump", false);
+            //animator.SetBool("jump", false);
         }
     }
     private void OnTriggerExit(Collider other)
