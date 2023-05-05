@@ -373,7 +373,7 @@ MonoBehaviour:
   pathUpdateSeconds: 0.5
   speed: 10
   airSpeed: 5
-  nextWaypointDistance: 3
+  nextWaypointDistance: 2.5
   jumpNodeHeightRequirement: 0.5
   jumpModifier: 0.1
   jumpCheckOffset: 0.1
