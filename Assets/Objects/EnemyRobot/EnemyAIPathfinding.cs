@@ -140,10 +140,6 @@ public class EnemyAIPathfinding : MonoBehaviour
             Debug.Log("Moving");
             rb.AddForce(force, ForceMode.VelocityChange);
         }
-        else
-        {
-
-        }
 
         //next waypoint
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
