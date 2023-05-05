@@ -9,6 +9,9 @@ TagManager:
   - TemporaryPlatform
   - Lava
   - CopyPlayerPos
+  - EnemyGround
+  - Enemy
+  - JumpCollider
   layers:
   - Default
   - TransparentFX
@@ -16,7 +19,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Level
   - 
   - 
   - 
