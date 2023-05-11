@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR.Haptics;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -38,6 +39,9 @@ public class PlayerMovement : MonoBehaviour
     private AudioSource audio;
     [SerializeField] private AudioClip landSound;
 
+    //throw.cs
+    private ThrowProjectile projectileThrow;
+
 
     private void OnEnable()
     {
@@ -58,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
         playerControls = new PlayerControls();
         controller = GetComponent<CharacterController>();
         rBody = this.GetComponent<Rigidbody>();
+        projectileThrow = GetComponent<ThrowProjectile>();
     }
 
     private void Start()
@@ -116,9 +121,12 @@ public class PlayerMovement : MonoBehaviour
             }
             controller.Move(movementOutputVector); // Moves the player with values calculated above and in Update()
 
+
+            animator.SetBool("m_fire", projectileThrow.m_fire);
+
         }
 
-        
+
         //Debug.Log(movementVector.x + ", " + movementVector.y);
         Grounded = controller.isGrounded;
         if (!Grounded && !swinging)
@@ -161,21 +169,26 @@ public class PlayerMovement : MonoBehaviour
             }            
 
         }
+        float test = Mathf.Clamp01(movementOutputVector.magnitude);
+
         if (movementOutputVector.x > 0)
         {
             ifDirectionChanged = false;
             animator.SetBool("running", true);
+            animator.SetFloat("Blend", 1.0f, 0.05f, Time.deltaTime);
             //Debug.Log("move right");
         }
         else if (movementOutputVector.x < 0)
         {
             ifDirectionChanged = true;
             animator.SetBool("running", true);
+            animator.SetFloat("Blend", 1.0f, 0.05f, Time.deltaTime);
             //Debug.Log("move left");
         }
         else
         {
             animator.SetBool("running", false);
+            animator.SetFloat("Blend", test, 0.05f, Time.deltaTime);
         }
 
     }

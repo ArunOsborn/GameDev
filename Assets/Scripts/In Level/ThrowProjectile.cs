@@ -11,9 +11,11 @@ public class ThrowProjectile : MonoBehaviour
     public PlayerControls playerControls;
     private InputAction throwControl;
 
-    private bool m_fire;
+    public bool m_fire;
     public float fireCooldownTime = 1;
     private float cooldown = 0;
+
+
 
     private void Start()
     {
