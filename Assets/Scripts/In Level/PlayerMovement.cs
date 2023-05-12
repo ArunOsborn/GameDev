@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private InputAction movementInputVector;
 
     private Rigidbody rBody;
+    private RigidbodyConstraints standardConstraints;
 
     [SerializeField] private bool Grounded;
     private Vector2 m_move;
@@ -68,6 +69,8 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         audio = this.GetComponent<AudioSource>();
+        standardConstraints = rBody.constraints;
+
     }
 
     public void SetMovement(InputAction.CallbackContext context)
@@ -75,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
         m_move = context.ReadValue<Vector2>();
     }
 
-    public void rotatePlayer()
+    public void FlipPlayer()
     {
         if (ifDirectionChanged)
         {
@@ -99,10 +102,14 @@ public class PlayerMovement : MonoBehaviour
             float rotateForce = m_move.x; // TODO: move this update to update
             if (rotateForce == 0)
             {
-                rotateForce = 20/this.transform.rotation.eulerAngles.x;
+                //rotateForce = 20/this.transform.rotation.eulerAngles.x;
             }
-            this.transform.RotateAround(pivotPosition, Vector3.forward, rotateForce);
-            //this.transform.Rotate(new Vector3(0, 0, move.ReadValue<Vector2>().x));
+            //this.transform.RotateAround(pivotPosition, new Vector3(0,0,1), rotateForce);
+            float adj = (pivotPosition.y - transform.position.y);
+            float opp = (pivotPosition.x - transform.position.x);
+            this.transform.rotation = Quaternion.Euler(new Vector3(Mathf.Atan(opp/adj)*180/(float)Math.PI, 90, 0));
+            Physics.SyncTransforms();
+            //this.transform.Rotate(new Vector3(0, 0, m_move.x));
         }
         else
         {
@@ -135,25 +142,26 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("jump", false);
 
 
-        rotatePlayer();
+        FlipPlayer();
     }
 
     private void Update()
     {
-        if (!swinging)
-        {
-            movementOutputVector.x = m_move.x * speed;
-        }
-        else
+        if (swinging)
         {
             if (m_move.y <= 0) // When player stops holding jump button
             {
-                movementOutputVector.x = Mathf.Cos(transform.rotation.eulerAngles.z)*speed; // Use SOHCAHTOA here
+                Debug.Log("Swinging stopping in update");
+                movementOutputVector.x = Mathf.Cos(transform.rotation.eulerAngles.z) * speed; // Use SOHCAHTOA here
                 movementOutputVector.y = Mathf.Sin(transform.rotation.eulerAngles.z) * speed;
                 swinging = false;
                 Debug.Log("Jumped off swing: " + movementOutputVector.x + ", " + movementOutputVector.y);
                 ExitSwing();
-            }            
+            }
+        }
+        else
+        {
+            movementOutputVector.x = m_move.x * speed;
         }
         if (m_move.y>0)
         {
@@ -195,7 +203,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void ExitSwing()
     {
+        rBody.constraints = standardConstraints;
         this.transform.rotation = Quaternion.Euler(0, 90, 0);
+        controller.enabled = true;
         swinging = false;
     }
 
@@ -203,23 +213,22 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log("Triggered collision");
 
-        if (other.gameObject.tag == "Swing")
+        if (other.gameObject.tag == "Swing" && m_move.y > 0 && other.transform.position.y > this.transform.position.y) // Must get to swing and jump key held. Only if swing is above the player (Can't use contacts with trigger)
         {
             Debug.Log("Entered swing radius");
-
-            if (other.transform.position.y > this.transform.position.y) // Only if swing is above the player (Can't use contacts with trigger)
-            {
-                this.transform.LookAt(other.gameObject.transform);
-                this.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x + 90, 90, 0);
-                pivotPosition = other.gameObject.transform.position;
-                swinging = true;
-            }
+            rBody.constraints = RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionZ;
+            controller.enabled = false;
+            //this.transform.LookAt(other.gameObject.transform);
+            //this.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x + 90, 90, 0);
+            pivotPosition = other.gameObject.transform.position;
+            swinging = true;
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!Grounded)
+        Debug.Log("Collided");
+        if (!Grounded && !swinging)
         {
             jumpDuration = maxJump; // When the player hits something above them, extending the jump doesn't work.
             movementOutputVector.y = -gravity;
@@ -239,7 +248,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.tag == "Swing")
         {
             Debug.Log("Exiting swing radius");
-            ExitSwing();
+            //ExitSwing();
         }
     }
 }
