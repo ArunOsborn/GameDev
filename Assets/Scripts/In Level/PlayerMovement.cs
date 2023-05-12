@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     private float jumpDuration;
 
     // Swinging
-    bool swinging = false;
+    [SerializeField]  bool swinging = false;
     private Vector3 pivotPosition;
 
     private Animator animator;
@@ -94,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
             float rotateForce = m_move.x; // TODO: move this update to update
             if (rotateForce == 0)
             {
-                rotateForce = this.transform.rotation.eulerAngles.x/20;
+                rotateForce = 20/this.transform.rotation.eulerAngles.x;
             }
             this.transform.RotateAround(pivotPosition, Vector3.forward, rotateForce);
             //this.transform.Rotate(new Vector3(0, 0, move.ReadValue<Vector2>().x));
@@ -188,6 +188,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Triggered collision");
+
         if (other.gameObject.tag == "Swing")
         {
             Debug.Log("Entered swing radius");
