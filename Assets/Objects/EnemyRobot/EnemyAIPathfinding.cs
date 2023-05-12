@@ -31,16 +31,12 @@ public class EnemyAIPathfinding : MonoBehaviour
     Seeker seeker;
     Rigidbody rb;
     private Animator animator;
-    //private Transform currentPoint;
-    //public GameObject PatrolA;
-    //public GameObject PatrolB;
-    //public GameObject CubePatrolA;
-    //public GameObject CubePatrolB;
-    public Collider groundCollider;
-    [SerializeField] private LayerMask levelGround;
+
     public bool collided;
     public bool jumpCollided;
     public bool jumping;
+
+    [SerializeField] private float speedOfRotation;
 
     // Start is called before the first frame update
     public void Start()
@@ -48,19 +44,10 @@ public class EnemyAIPathfinding : MonoBehaviour
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        groundCollider = GetComponent<Collider>();
-        //currentPoint = PatrolA.transform;
         animator.SetBool("isRunning", true);
 
         InvokeRepeating("UpdatePath", 0f, pathUpdateSeconds);
     }
-
-    //private void flip()
-    //{
-    //    Vector3 local = transform.localScale;
-    //    local.x *= -1;
-    //    transform.localScale = local;
-    //}
 
     // Update is called once per frame
     private void FixedUpdate()
@@ -69,31 +56,6 @@ public class EnemyAIPathfinding : MonoBehaviour
         {
             PathFollow();
         }
-        //else
-        //{
-        //    Vector3 point = currentPoint.position - transform.position;
-        //    if(currentPoint == PatrolB.transform)
-        //    {
-        //        rb.AddForce(this.transform.forward * 0.3f, ForceMode.VelocityChange);
-        //    }
-        //    else
-        //    {
-        //        rb.AddForce(-this.transform.forward * 0.3f, ForceMode.VelocityChange);
-        //    }
-
-        //    if(Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == PatrolB.transform)
-        //    {
-        //        currentPoint = PatrolA.transform;
-        //    }
-        //    if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == PatrolA.transform)
-        //    {
-        //        currentPoint = PatrolB.transform;
-        //    }
-            //if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == PatrolA.transform)
-            //{
-            //    currentPoint = PatrolB.transform;
-            //}
-        //}
     }
 
     private void UpdatePath()
@@ -153,14 +115,16 @@ public class EnemyAIPathfinding : MonoBehaviour
             currentWaypoint++;
         }
 
-        //direction graphics handling
+        //direction graphics handling (turn the enemy to face the player)
         if (force.x >= 0.01f)
         {
-            transform.localRotation = Quaternion.LookRotation(new Vector3(90f, 0f, 0f));
+            Quaternion left = Quaternion.Euler(0, 90, 0);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, left, speedOfRotation * Time.deltaTime);
         }
         else if (force.x <= -0.01f)
         {
-            transform.localRotation = Quaternion.LookRotation(new Vector3(-90f, 0f, 0f));
+            Quaternion right = Quaternion.Euler(0, -90, 0);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, right, speedOfRotation * Time.deltaTime);
         }
     }
 
