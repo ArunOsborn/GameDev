@@ -44,7 +44,6 @@ public class EnemyAIPathfinding : MonoBehaviour
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        animator.SetBool("isRunning", true);
 
         InvokeRepeating("UpdatePath", 0f, pathUpdateSeconds);
     }
@@ -54,7 +53,12 @@ public class EnemyAIPathfinding : MonoBehaviour
     {
         if (TargetInDistance())
         {
+            animator.SetBool("isRunning", true);
             PathFollow();
+        }
+        else
+        {
+            animator.SetBool("isRunning", false);
         }
     }
 
@@ -95,6 +99,10 @@ public class EnemyAIPathfinding : MonoBehaviour
                 Debug.Log("enemy jump");
                 rb.AddForce(Vector3.up * airSpeed, ForceMode.VelocityChange);
             }
+        }
+        else
+        {
+            rb.AddForce(Vector3.down * 0.25f, ForceMode.VelocityChange);
         }
 
         //movement
