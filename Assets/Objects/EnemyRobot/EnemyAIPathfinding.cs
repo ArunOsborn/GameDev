@@ -137,7 +137,6 @@ public class EnemyAIPathfinding : MonoBehaviour
         //movement
         if (!jumpCollided)
         {
-            Debug.Log("Moving");
             rb.AddForce(force, ForceMode.VelocityChange);
         }
 
@@ -180,6 +179,12 @@ public class EnemyAIPathfinding : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if(collision.collider.tag == "Banana")
+        {
+            Destroy(this.gameObject);
+            Destroy(collision.gameObject);
+        }
+
         if (collision.collider)
         {
             collided = true;

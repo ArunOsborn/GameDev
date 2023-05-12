@@ -14,7 +14,7 @@ public class ThrowProjectile : MonoBehaviour
     public bool m_fire;
     public float fireCooldownTime = 1;
     private float cooldown = 0;
-
+    private GameObject newProjectile;
 
 
     private void Start()
@@ -36,7 +36,7 @@ public class ThrowProjectile : MonoBehaviour
         if (m_fire && cooldown <= 0)
         {
             cooldown = fireCooldownTime;
-            GameObject newProjectile = Object.Instantiate(projectileObject);
+            newProjectile = Object.Instantiate(projectileObject);
             Debug.Log("Rotation: " + this.transform.rotation.eulerAngles.y);
 
             if (this.transform.rotation.eulerAngles.y < 180)
@@ -52,5 +52,18 @@ public class ThrowProjectile : MonoBehaviour
                 newProjectile.GetComponent<Rigidbody>().velocity = new Vector3(-projectileSpeed, 3, 0); ; // TODO: Change velocity dependant on the direction the monkey faces
             }
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //if(collision.collider.tag == "Enemy")
+        //{
+        //    Destroy(newProjectile.gameObject);
+        //}
+        //if(collision.tag == "Enemy")
+        //{
+            Debug.Log(collision.collider.tag);
+            Destroy(newProjectile);
+        //}
     }
 }
