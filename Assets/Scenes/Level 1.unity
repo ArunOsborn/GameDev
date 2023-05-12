@@ -18256,6 +18256,11 @@ PrefabInstance:
       objectReference: {fileID: 1490596434}
     - target: {fileID: 2327554853049225020, guid: 0488453486476ad40add07a0d1c515c0,
         type: 3}
+      propertyPath: followEnabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2327554853049225020, guid: 0488453486476ad40add07a0d1c515c0,
+        type: 3}
       propertyPath: speedOfRotation
       value: 1500
       objectReference: {fileID: 0}
