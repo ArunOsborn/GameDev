@@ -13,7 +13,7 @@ public class ThrowProjectile : MonoBehaviour
 
     public bool m_fire;
     public float fireCooldownTime = 1;
-    private float cooldown = 0;
+    public float cooldown = 0;
     private GameObject newProjectile;
 
 
