@@ -53,17 +53,4 @@ public class ThrowProjectile : MonoBehaviour
             }
         }
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        //if(collision.collider.tag == "Enemy")
-        //{
-        //    Destroy(newProjectile.gameObject);
-        //}
-        //if(collision.tag == "Enemy")
-        //{
-            Debug.Log(collision.collider.tag);
-            Destroy(newProjectile);
-        //}
-    }
 }

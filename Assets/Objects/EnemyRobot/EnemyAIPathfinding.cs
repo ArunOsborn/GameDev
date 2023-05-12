@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 using System.Transactions;
+using UnityEngine.SceneManagement;
 
 public class EnemyAIPathfinding : MonoBehaviour
 {
@@ -183,6 +184,12 @@ public class EnemyAIPathfinding : MonoBehaviour
         {
             Destroy(this.gameObject);
             Destroy(collision.gameObject);
+        }
+ 
+        if(collision.collider.tag == "Player")
+        {
+            SceneManager.LoadSceneAsync(PlayerPrefs.GetString("Selected Level"));
+            GameObject.Find("EventSystem").GetComponent<SceneHandler>().LoadMainMenu();
         }
 
         if (collision.collider)
