@@ -8428,7 +8428,7 @@ PrefabInstance:
     - target: {fileID: 3986732010387217886, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3986732010551177751, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
         type: 3}
@@ -8439,6 +8439,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962530466149844653, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5293591747935545732, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
         type: 3}
@@ -8454,6 +8459,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.z
       value: 0.20999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 5479229096036118606, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
+        type: 3}
+      propertyPath: rotateDrag
+      value: 1.05
       objectReference: {fileID: 0}
     - target: {fileID: 5638994023463471152, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
         type: 3}

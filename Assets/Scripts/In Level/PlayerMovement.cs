@@ -35,6 +35,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]  bool swinging = false;
     private Vector3 pivotPosition;
 
+    private float rotateMomentum = 0;
+    public float rotateDrag = 2;
+
     private Animator animator;
 
     // Sound Effects
@@ -104,10 +107,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 //rotateForce = 20/this.transform.rotation.eulerAngles.x;
             }
-            
             float adj = (pivotPosition.y - transform.position.y);
             float opp = (pivotPosition.x - transform.position.x);
-            this.transform.RotateAround(pivotPosition, new Vector3(0, 0, 1), rotateForce); // Swings player
+            rotateMomentum += opp/2 + rotateForce;
+            rotateForce += rotateMomentum;
+            this.transform.RotateAround(pivotPosition, new Vector3(0, 0, 1), rotateMomentum); // Swings player
+            rotateMomentum = rotateMomentum / rotateDrag;
             //Debug.Log(((Math.Atan(-3 / 8) * 180f)/ (float)Math.PI) + " degrees"); // This makes no sense. It says 0!
             float angle = Mathf.Atan(opp / adj) * 180 / (float)Math.PI; // SOHCAHTOA T^-1(O/A) converted to degrees from radians
             Debug.Log("Player angle in relation to swing: " + angle);
@@ -179,8 +184,8 @@ public class PlayerMovement : MonoBehaviour
             if (m_move.y <= 0) // When player stops holding jump button
             {
                 Debug.Log("Swinging stopping in update");
-                movementOutputVector.x = Mathf.Cos(transform.rotation.eulerAngles.z) * speed; // Use SOHCAHTOA here
-                movementOutputVector.y = Mathf.Sin(transform.rotation.eulerAngles.z) * speed;
+                movementOutputVector.x = Mathf.Cos(transform.rotation.eulerAngles.z) * rotateMomentum; // Use SOHCAHTOA here
+                movementOutputVector.y = Mathf.Sin(transform.rotation.eulerAngles.z) * rotateMomentum;
                 swinging = false;
                 Debug.Log("Jumped off swing: " + movementOutputVector.x + ", " + movementOutputVector.y);
                 ExitSwing();
