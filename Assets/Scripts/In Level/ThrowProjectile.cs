@@ -11,15 +11,17 @@ public class ThrowProjectile : MonoBehaviour
     public PlayerControls playerControls;
     private InputAction throwControl;
 
-    public bool m_fire;
+    private bool m_fire;
     public float fireCooldownTime = 1;
-    public float cooldown = 0;
+    private float cooldown = 0;
     private GameObject newProjectile;
+    private Animator animator;
 
 
     private void Start()
     {
         cooldown = fireCooldownTime;
+        animator = GetComponent<Animator>();
     }
 
     public void Fire(InputAction.CallbackContext context)
@@ -51,6 +53,30 @@ public class ThrowProjectile : MonoBehaviour
                 newProjectile.transform.position = new Vector3(this.transform.position.x - 1, this.transform.position.y + 1, this.transform.position.z);
                 newProjectile.GetComponent<Rigidbody>().velocity = new Vector3(-projectileSpeed, 3, 0); ; // TODO: Change velocity dependant on the direction the monkey faces
             }
+
+            //Debug.Log("setting to true");
+            //Debug.Log(animator.GetLayerWeight(animator.GetLayerIndex("throwing")));
+
+            if (animator.GetLayerWeight(animator.GetLayerIndex("throwing")) <= 0.0f)
+            {
+                animator.SetLayerWeight(animator.GetLayerIndex("throwing"), 1.0f);
+                animator.SetBool("m_fire", true);
+            }
+            else
+            {
+                animator.SetLayerWeight(animator.GetLayerIndex("throwing"), cooldown);
+                animator.SetBool("m_fire", true);
+            }
+           
+
+        }            
+        else
+        {
+            animator.SetLayerWeight(animator.GetLayerIndex("throwing"), cooldown);
+
+
+            Debug.Log("setting to false");
+            animator.SetBool("m_fire", false);
         }
     }
 }
