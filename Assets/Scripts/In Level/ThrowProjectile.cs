@@ -75,7 +75,7 @@ public class ThrowProjectile : MonoBehaviour
             animator.SetLayerWeight(animator.GetLayerIndex("throwing"), cooldown);
 
 
-            Debug.Log("setting to false");
+            //Debug.Log("setting to false");
             animator.SetBool("m_fire", false);
         }
     }

@@ -18,11 +18,11 @@ public class FrameByFrame : MonoBehaviour
         if (frameByFrame)
         {
             Time.timeScale = 0.0f;
-            if (Input.GetKeyDown(KeyCode.Return) && unpause==false)
+            if (Input.GetKey(KeyCode.Return) && unpause==false)
             {
                 Debug.Log("return pressed");
                 Time.timeScale = 1.0f;
-                unpause = true;
+                //unpause = true;
             }
         }
         else if (Input.GetKey(KeyCode.Return))

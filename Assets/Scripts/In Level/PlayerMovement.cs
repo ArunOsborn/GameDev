@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool Grounded;
     private Vector2 m_move;
 
-    private Vector3 movementMomentum = new Vector3(0,0,0);
+    public Vector3 movementMomentum = new Vector3(0,0,0); // TODO: Change to private
     public float friction = 0.1f;
 
     // Variable jumping
@@ -158,8 +158,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 Debug.Log("Swinging stopping in update");
                 ExitSwing();
-                movementOutputVector.x = Mathf.Cos(transform.rotation.eulerAngles.z) * rotateMomentum/5; // Use SOHCAHTOA here
-                movementOutputVector.y = Mathf.Sin(transform.rotation.eulerAngles.z) * rotateMomentum/5;
+                movementOutputVector.x = Mathf.Cos(transform.rotation.eulerAngles.z) * rotateMomentum; // Use SOHCAHTOA here
+                movementOutputVector.y = Mathf.Sin(transform.rotation.eulerAngles.z) * rotateMomentum;
                 swinging = false;
                 Debug.Log("Jumped off swing: " + movementOutputVector.x + ", " + movementOutputVector.y);
                 
