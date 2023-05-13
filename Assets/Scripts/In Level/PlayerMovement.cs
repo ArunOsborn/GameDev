@@ -153,11 +153,12 @@ public class PlayerMovement : MonoBehaviour
             if (m_move.y <= 0) // When player stops holding jump button
             {
                 Debug.Log("Swinging stopping in update");
-                movementOutputVector.x = Mathf.Cos(transform.rotation.eulerAngles.z) * rotateMomentum; // Use SOHCAHTOA here
-                movementOutputVector.y = Mathf.Sin(transform.rotation.eulerAngles.z) * rotateMomentum;
+                ExitSwing();
+                movementOutputVector.x = Mathf.Cos(transform.rotation.eulerAngles.z) * rotateMomentum/5; // Use SOHCAHTOA here
+                movementOutputVector.y = Mathf.Sin(transform.rotation.eulerAngles.z) * rotateMomentum/5;
                 swinging = false;
                 Debug.Log("Jumped off swing: " + movementOutputVector.x + ", " + movementOutputVector.y);
-                ExitSwing();
+                
             }
         }
         else
