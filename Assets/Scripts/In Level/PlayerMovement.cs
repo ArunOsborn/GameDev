@@ -44,9 +44,6 @@ public class PlayerMovement : MonoBehaviour
     private AudioSource audio;
     [SerializeField] private AudioClip landSound;
 
-    //throw.cs
-    private ThrowProjectile projectileThrow;
-
     private void OnEnable()
     {
         playerControls.Enable();
@@ -66,7 +63,6 @@ public class PlayerMovement : MonoBehaviour
         playerControls = new PlayerControls();
         controller = GetComponent<CharacterController>();
         rBody = this.GetComponent<Rigidbody>();
-        projectileThrow = GetComponent<ThrowProjectile>();
     }
 
     private void Start()
@@ -136,33 +132,6 @@ public class PlayerMovement : MonoBehaviour
                     movementOutputVector.y += -gravity;
             }
             controller.Move(movementOutputVector); // Moves the player with values calculated above and in Update()
-
-            //Debug.Log(projectileThrow.m_fire);
-
-            if(projectileThrow.m_fire)
-            {
-                //Debug.Log("setting to true");
-                Debug.Log(animator.GetLayerWeight(animator.GetLayerIndex("throwing")));
-
-                if (animator.GetLayerWeight(animator.GetLayerIndex("throwing")) <= 0.0f)
-                {
-                    animator.SetLayerWeight(animator.GetLayerIndex("throwing"), 1.0f);
-                    animator.SetBool("m_fire", true);
-                }
-                else
-                {
-                    animator.SetLayerWeight(animator.GetLayerIndex("throwing"), projectileThrow.cooldown);
-                    animator.SetBool("m_fire", true);
-                }
-            }
-            else
-            {
-                animator.SetLayerWeight(animator.GetLayerIndex("throwing"), projectileThrow.cooldown);
-
-
-                //Debug.Log("setting to false");
-                animator.SetBool("m_fire", false);
-            }
         }
 
 
