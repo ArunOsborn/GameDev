@@ -100,12 +100,16 @@ public class PlayerMovement : MonoBehaviour
             {
                 //rotateForce = 20/this.transform.rotation.eulerAngles.x;
             }
-            //this.transform.RotateAround(pivotPosition, new Vector3(0,0,1), rotateForce);
+            
             float adj = (pivotPosition.y - transform.position.y);
             float opp = (pivotPosition.x - transform.position.x);
-            this.transform.rotation = Quaternion.Euler(new Vector3(Mathf.Atan(opp/adj)*180/(float)Math.PI, 90, 0));
+            this.transform.RotateAround(pivotPosition, new Vector3(0, 0, 1), rotateForce); // Swings player
+            //Debug.Log(((Math.Atan(-3 / 8) * 180f)/ (float)Math.PI) + " degrees"); // This makes no sense. It says 0!
+            float angle = Mathf.Atan(opp / adj) * 180 / (float)Math.PI; // SOHCAHTOA T^-1(O/A) converted to degrees from radians
+            Debug.Log("Player angle in relation to swing: " + angle);
+            this.transform.eulerAngles = new Vector3(angle, 90, 0);
             Physics.SyncTransforms();
-            //this.transform.Rotate(new Vector3(0, 0, m_move.x));
+            Debug.Log("New player rotation: " + transform.rotation.eulerAngles);
         }
         else
         {
@@ -219,7 +223,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collided");
+        if (this.gameObject == collision.gameObject)
+        {
+            Debug.Log("Ignoring collision with self");
+            Physics.IgnoreCollision(this.gameObject.GetComponent<BoxCollider>(), collision.collider);
+        }
+        Debug.Log(this.gameObject.name+ " collided with "+collision.gameObject.name);
         if (!Grounded && !swinging)
         {
             jumpDuration = maxJump; // When the player hits something above them, extending the jump doesn't work.

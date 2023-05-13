@@ -24,7 +24,7 @@ public class ThrowProjectile : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public void Fire(InputAction.CallbackContext context)
+    public void Fire(InputAction.CallbackContext context) // Gets called when fire button pressed
     {
         Debug.Log(context);
         m_fire = context.ReadValueAsButton();
