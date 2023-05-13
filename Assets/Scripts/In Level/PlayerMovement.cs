@@ -27,6 +27,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool Grounded;
     private Vector2 m_move;
 
+    private Vector3 movementMomentum = new Vector3(0,0,0);
+    public float friction = 0.1f;
+
     // Variable jumping
     public float maxJump = 0.25f;
     private float jumpDuration;
@@ -131,7 +134,8 @@ public class PlayerMovement : MonoBehaviour
                 else
                     movementOutputVector.y += -gravity;
             }
-            controller.Move(movementOutputVector); // Moves the player with values calculated above and in Update()
+            movementMomentum = new Vector3(Mathf.Lerp(movementMomentum.x, movementOutputVector.x, friction),movementOutputVector.y,movementOutputVector.z);
+            controller.Move(movementMomentum); // Moves the player with values calculated above and in Update()
         }
 
 
