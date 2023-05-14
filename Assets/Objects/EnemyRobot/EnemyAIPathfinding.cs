@@ -157,12 +157,6 @@ public class EnemyAIPathfinding : MonoBehaviour
             Destroy(collision.gameObject);
             Destroy(this.gameObject);
         }
- 
-        if(collision.collider.tag == "Player")
-        {
-            SceneManager.LoadSceneAsync(PlayerPrefs.GetString("Selected Level"));
-            GameObject.Find("EventSystem").GetComponent<SceneHandler>().LoadMainMenu();
-        }
 
         if (collision.collider)
         {

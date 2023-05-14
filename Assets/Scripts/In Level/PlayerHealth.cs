@@ -11,6 +11,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private GameObject body;
     private Color originalBodyColour;
 
+    public bool gameOver;
+
     public GameObject HUD;
 
     public int lives = 3;
@@ -38,6 +40,7 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         body = transform.Find("Body").gameObject;
+        gameOver = false;
     }
 
     private void EndInvincibleTime()
@@ -86,6 +89,10 @@ public class PlayerHealth : MonoBehaviour
         {
 
             //Destroy(other.gameObject);
+        }
+        if (other.collider.tag == "Enemy")
+        {
+            gameOver = true;
         }
     }
 

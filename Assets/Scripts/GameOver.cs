@@ -16,7 +16,7 @@ public class GameOver : MonoBehaviour
     void Update()
     {
         Debug.Log(health);
-        if(health.lives <= 0)
+        if(health.lives <= 0 || health.gameOver)
         {
             gameOver.SetActive(true);
             Time.timeScale = 0.0f;

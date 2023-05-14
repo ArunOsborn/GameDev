@@ -5,14 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class FinishLevel : MonoBehaviour
 {
+    public bool finish;
+
+    private void Awake()
+    {
+        finish = false;
+    }
+
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("Finish door hit!");
-        if (other.GetComponent<Collider>().CompareTag("Player"))
+        if (other.gameObject.tag == "Player")
         {
-            Cursor.visible = true;
-            Debug.Log("Back to main menu");
-            SceneManager.LoadScene("Main Menu");
+            finish = true;
+            Debug.Log("Level select screen");
         }
     }
 }
