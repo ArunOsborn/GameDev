@@ -12,6 +12,7 @@ TagManager:
   - EnemyGround
   - Enemy
   - JumpCollider
+  - Banana
   layers:
   - Default
   - TransparentFX
