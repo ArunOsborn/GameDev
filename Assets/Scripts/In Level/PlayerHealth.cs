@@ -87,7 +87,11 @@ public class PlayerHealth : MonoBehaviour
 
             //Destroy(other.gameObject);
         }
-        else if (other.gameObject.tag == "Lava")
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if(collision.gameObject.tag == "Lava")
         {
             LoseLife();
         }

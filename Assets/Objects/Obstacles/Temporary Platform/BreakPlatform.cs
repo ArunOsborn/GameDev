@@ -34,10 +34,15 @@ public class BreakPlatform : MonoBehaviour
 
             //checks if the normal collision is on a specific face of the platform
 
-            if(collision.contacts[0].normal[1] <= -1.0f)
+            if(collision.contacts[0].normal[1] <= 1.0f)
             {
                 beginTimer = true;
             }
         }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        Debug.Log("checking");
     }
 }
