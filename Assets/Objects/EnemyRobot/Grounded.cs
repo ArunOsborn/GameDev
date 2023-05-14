@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,10 +24,22 @@ public class Grounded : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
+        Debug.Log(collision.gameObject.layer);
         if(collision.gameObject.layer == layerName)
         {
             enemyGroundedVariable.isGrounded = true;
             Debug.Log("Enemy grounded variable: " + enemyGroundedVariable.isGrounded);
+        }
+    }
+
+    private void OnTriggerStay(Collider collision)
+    {
+        if (collision.gameObject.layer == layerName)
+        {
+            if (!enemyGroundedVariable.isGrounded)
+            {
+                enemyGroundedVariable.isGrounded = true;
+            }
         }
     }
 
