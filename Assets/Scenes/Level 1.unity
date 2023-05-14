@@ -2722,7 +2722,7 @@ GameObject:
   m_Component:
   - component: {fileID: 374761556}
   - component: {fileID: 374761557}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Reflection Probe (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2754,7 +2754,7 @@ ReflectionProbe:
   m_Enabled: 1
   serializedVersion: 2
   m_Type: 0
-  m_Mode: 1
+  m_Mode: 0
   m_RefreshMode: 1
   m_TimeSlicingMode: 0
   m_Resolution: 128
@@ -4010,6 +4010,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4962530466149844653, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 1.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 5293591747935545732, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2.7794154
+      objectReference: {fileID: 0}
+    - target: {fileID: 5293591747935545732, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 1.6725429
+      objectReference: {fileID: 0}
     - target: {fileID: 5638994023463471152, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
         type: 3}
       propertyPath: HUD
@@ -4613,7 +4628,7 @@ PrefabInstance:
     - target: {fileID: 8736090201524049760, guid: 57094f2ac75864b21916679d5d7f3e25,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57094f2ac75864b21916679d5d7f3e25, type: 3}
@@ -6609,8 +6624,8 @@ MonoBehaviour:
   version: 1
   uniqueID: 6758024866092318332
   points:
-  - {x: -12.3, y: -10.4, z: -0.5}
-  - {x: 8.318592, y: -10.4, z: -0.5}
+  - {x: -12.300001, y: -9.53337, z: -0.5}
+  - {x: 8.318592, y: -9.499425, z: -0.5}
   - {x: 8.393179, y: 13.35, z: 1}
   - {x: -12.3, y: 13.35, z: 1}
   convex: 1
@@ -6852,7 +6867,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 832575517}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.1316439, y: -1.664, z: 3.5713844}
+  m_LocalPosition: {x: 1.1316439, y: -3.66, z: 3.5713844}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14105,7 +14120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1894346873}
   - component: {fileID: 1894346874}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Reflection Probe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18189,6 +18204,16 @@ PrefabInstance:
       propertyPath: m_Drag
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2327554853049224994, guid: 0488453486476ad40add07a0d1c515c0,
+        type: 3}
+      propertyPath: m_Height
+      value: 1.9215214
+      objectReference: {fileID: 0}
+    - target: {fileID: 2327554853049224994, guid: 0488453486476ad40add07a0d1c515c0,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.77
+      objectReference: {fileID: 0}
     - target: {fileID: 2327554853049224999, guid: 0488453486476ad40add07a0d1c515c0,
         type: 3}
       propertyPath: m_RootOrder
@@ -18263,6 +18288,11 @@ PrefabInstance:
         type: 3}
       propertyPath: speedOfRotation
       value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 5030926744971322513, guid: 0488453486476ad40add07a0d1c515c0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0488453486476ad40add07a0d1c515c0, type: 3}
