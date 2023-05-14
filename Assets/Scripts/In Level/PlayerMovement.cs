@@ -87,12 +87,14 @@ public class PlayerMovement : MonoBehaviour
             //interpolates the rotation to smoothly rotate the player
             Quaternion left = Quaternion.Euler(0, -90, 0);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, left, speedOfRotation * Time.deltaTime);
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0.0f);
         }
         else
         {
             //interpolates the rotation to smoothly rotate the player
             Quaternion right = Quaternion.Euler(0, 90, 0);//Quaternion.LookRotation(new Vector3(0,90,0));
             transform.rotation = Quaternion.RotateTowards(transform.rotation, right, speedOfRotation * Time.deltaTime);
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0.0f);
         }
     }
 
