@@ -381,13 +381,10 @@ MonoBehaviour:
   jumpEnabled: 1
   directionLookEnabled: 1
   isGrounded: 0
-  groundCollider: {fileID: 0}
-  levelGround:
-    serializedVersion: 2
-    m_Bits: 64
   collided: 0
   jumpCollided: 0
   jumping: 0
+  speedOfRotation: 1500
 --- !u!114 &2327554853049224995
 MonoBehaviour:
   m_ObjectHideFlags: 0
