@@ -18297,21 +18297,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1110911817}
     m_Modifications:
-    - target: {fileID: 2327554853049224992, guid: 0488453486476ad40add07a0d1c515c0,
-        type: 3}
-      propertyPath: m_Drag
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2327554853049224994, guid: 0488453486476ad40add07a0d1c515c0,
-        type: 3}
-      propertyPath: m_Height
-      value: 1.9215214
-      objectReference: {fileID: 0}
-    - target: {fileID: 2327554853049224994, guid: 0488453486476ad40add07a0d1c515c0,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 0.77
-      objectReference: {fileID: 0}
     - target: {fileID: 2327554853049224999, guid: 0488453486476ad40add07a0d1c515c0,
         type: 3}
       propertyPath: m_RootOrder
@@ -18377,11 +18362,6 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1490596434}
-    - target: {fileID: 2327554853049225020, guid: 0488453486476ad40add07a0d1c515c0,
-        type: 3}
-      propertyPath: followEnabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2327554853049225020, guid: 0488453486476ad40add07a0d1c515c0,
         type: 3}
       propertyPath: speedOfRotation

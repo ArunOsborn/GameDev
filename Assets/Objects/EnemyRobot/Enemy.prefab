@@ -381,13 +381,10 @@ MonoBehaviour:
   jumpEnabled: 1
   directionLookEnabled: 1
   isGrounded: 0
-  groundCollider: {fileID: 0}
-  levelGround:
-    serializedVersion: 2
-    m_Bits: 64
   collided: 0
   jumpCollided: 0
   jumping: 0
+  speedOfRotation: 1500
 --- !u!114 &2327554853049224995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,7 +424,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.23
-  m_Height: 2.02
+  m_Height: 1.9215214
   m_Direction: 1
   m_Center: {x: 0, y: 0.77, z: 0}
 --- !u!65 &2327554853049224993
@@ -452,7 +449,7 @@ Rigidbody:
   m_GameObject: {fileID: 2327554853049225001}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 1
+  m_Drag: 0.1
   m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
