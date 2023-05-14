@@ -154,8 +154,8 @@ public class EnemyAIPathfinding : MonoBehaviour
     {
         if(collision.collider.tag == "Banana")
         {
-            Destroy(this.gameObject);
             Destroy(collision.gameObject);
+            Destroy(this.gameObject);
         }
  
         if(collision.collider.tag == "Player")
