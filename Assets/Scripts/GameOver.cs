@@ -1,0 +1,26 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class GameOver : MonoBehaviour
+{
+    public GameObject gameOver;
+    public PlayerHealth health;
+    // Start is called before the first frame update
+    void Start()
+    {
+        gameOver.SetActive(false);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        Debug.Log(health);
+        if(health.lives <= 0)
+        {
+            gameOver.SetActive(true);
+            Time.timeScale = 0.0f;
+            Cursor.visible = true;
+        }
+    }
+}

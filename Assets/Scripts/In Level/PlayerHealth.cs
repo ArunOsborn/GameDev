@@ -15,6 +15,8 @@ public class PlayerHealth : MonoBehaviour
 
     public int lives = 3;
 
+    [SerializeField] private GameObject gameOver;
+
     private bool healthLock = false; // When true, player cannot be hurt
 
     private void Awake()
@@ -38,6 +40,7 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         body = transform.Find("Body").gameObject;
+        gameOver.SetActive(false);
     }
 
     private void EndInvincibleTime()
@@ -56,11 +59,14 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log("Lives: " + lives);
             if (lives <= 0)
             {
-                SceneManager.LoadSceneAsync(PlayerPrefs.GetString("Selected Level"));
-                GameObject.Find("EventSystem").GetComponent<SceneHandler>().LoadMainMenu();
+                //Debug.Log("canvas active");
+                //SceneManager.LoadSceneAsync(PlayerPrefs.GetString("Selected Level"));
+                //GameObject.Find("EventSystem").GetComponent<SceneHandler>().LoadMainMenu();
             }
             else
             {
+                Cursor.visible = false;
+                Time.timeScale = 1.0f;
                 HUD.GetComponent<HudController>().RemoveHeart();
                 Debug.Log("Colour: "+body.GetComponent<SkinnedMeshRenderer>().material.color);
                 SkinnedMeshRenderer renderer = body.GetComponent<SkinnedMeshRenderer>();
