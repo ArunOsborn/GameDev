@@ -4015,21 +4015,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4962530466149844653, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 1.69
-      objectReference: {fileID: 0}
-    - target: {fileID: 5293591747935545732, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 2.7794154
-      objectReference: {fileID: 0}
-    - target: {fileID: 5293591747935545732, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 1.6725429
-      objectReference: {fileID: 0}
     - target: {fileID: 5638994023463471152, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
         type: 3}
       propertyPath: HUD
@@ -18372,11 +18357,6 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1490596434}
-    - target: {fileID: 2327554853049225020, guid: 0488453486476ad40add07a0d1c515c0,
-        type: 3}
-      propertyPath: speedOfRotation
-      value: 1500
-      objectReference: {fileID: 0}
     - target: {fileID: 5030926744971322513, guid: 0488453486476ad40add07a0d1c515c0,
         type: 3}
       propertyPath: m_LocalPosition.y
