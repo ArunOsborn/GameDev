@@ -15,8 +15,6 @@ public class PlayerHealth : MonoBehaviour
 
     public int lives = 3;
 
-    [SerializeField] private GameObject gameOver;
-
     private bool healthLock = false; // When true, player cannot be hurt
 
     private void Awake()
@@ -40,7 +38,6 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         body = transform.Find("Body").gameObject;
-        gameOver.SetActive(false);
     }
 
     private void EndInvincibleTime()
