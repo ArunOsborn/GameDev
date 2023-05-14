@@ -462,7 +462,6 @@ GameObject:
   - component: {fileID: 800413857}
   - component: {fileID: 800413856}
   - component: {fileID: 800413855}
-  - component: {fileID: 800413854}
   - component: {fileID: 800413853}
   m_Layer: 0
   m_Name: Main Camera
@@ -568,25 +567,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &800413854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 800413852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2026f767e85cb4187ba8b9b2ee944b06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  smoothSpeed: 0.125
-  positionOffset: {x: 0, y: 5, z: -35}
-  angleOffset: {x: 0, y: 5, z: 0}
-  cameraPreset: 1
-  fixYLevel: 0
-  yLevel: 0
 --- !u!114 &800413855
 MonoBehaviour:
   m_ObjectHideFlags: 0
