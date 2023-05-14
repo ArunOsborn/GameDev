@@ -2757,10 +2757,10 @@ ReflectionProbe:
   m_Mode: 0
   m_RefreshMode: 1
   m_TimeSlicingMode: 0
-  m_Resolution: 128
+  m_Resolution: 32
   m_UpdateFrequency: 0
-  m_BoxSize: {x: 20.164356, y: 18.25165, z: 10}
-  m_BoxOffset: {x: 1.0143609, y: 4.125826, z: 0}
+  m_BoxSize: {x: 20.164356, y: 19.128284, z: 13.85223}
+  m_BoxOffset: {x: 1.0143604, y: 3.6875076, z: 1.926115}
   m_NearClip: 0.3
   m_FarClip: 1000
   m_ShadowDistance: 100
@@ -3032,7 +3032,7 @@ ReflectionProbe:
   m_Mode: 0
   m_RefreshMode: 0
   m_TimeSlicingMode: 0
-  m_Resolution: 128
+  m_Resolution: 32
   m_UpdateFrequency: 0
   m_BoxSize: {x: 27.501717, y: 13.241943, z: 10}
   m_BoxOffset: {x: -2.8705864, y: -1.6209717, z: 0}
@@ -3950,6 +3950,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3fba8a71803bf423a816254714b316f4, type: 2}
+    - target: {fileID: 3986732010379445047, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
+        type: 3}
+      propertyPath: fireCooldownTime
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3986732010379445054, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
         type: 3}
       propertyPath: m_RootOrder
@@ -4806,7 +4811,7 @@ ReflectionProbe:
   m_Mode: 0
   m_RefreshMode: 0
   m_TimeSlicingMode: 0
-  m_Resolution: 128
+  m_Resolution: 32
   m_UpdateFrequency: 0
   m_BoxSize: {x: 26.814781, y: 13.85886, z: 10}
   m_BoxOffset: {x: 5.861042, y: -1.92943, z: 0}
@@ -11449,7 +11454,7 @@ ReflectionProbe:
   m_Mode: 0
   m_RefreshMode: 0
   m_TimeSlicingMode: 0
-  m_Resolution: 128
+  m_Resolution: 32
   m_UpdateFrequency: 0
   m_BoxSize: {x: 22.218775, y: 12.811074, z: 10}
   m_BoxOffset: {x: -6.1093874, y: 1.4055371, z: 0}
@@ -14252,7 +14257,7 @@ ReflectionProbe:
   m_Mode: 0
   m_RefreshMode: 0
   m_TimeSlicingMode: 0
-  m_Resolution: 128
+  m_Resolution: 32
   m_UpdateFrequency: 0
   m_BoxSize: {x: 30.69122, y: 11.781878, z: 10}
   m_BoxOffset: {x: -4.249071, y: 0.89093924, z: 0}
@@ -16336,7 +16341,7 @@ ReflectionProbe:
   m_Mode: 0
   m_RefreshMode: 0
   m_TimeSlicingMode: 0
-  m_Resolution: 128
+  m_Resolution: 32
   m_UpdateFrequency: 0
   m_BoxSize: {x: 36.25135, y: 13.024427, z: 10}
   m_BoxOffset: {x: 1.1427574, y: -1.5122137, z: 0}
@@ -17271,11 +17276,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 690234663873948906, guid: 916fe5b51014c4dd4a8b7fb799bad57a,
         type: 3}
-      propertyPath: m_Radius
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 690234663873948906, guid: 916fe5b51014c4dd4a8b7fb799bad57a,
-        type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -17368,6 +17368,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3975497792686871367, guid: 916fe5b51014c4dd4a8b7fb799bad57a,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3975497792686871367, guid: 916fe5b51014c4dd4a8b7fb799bad57a,
         type: 3}
@@ -18356,6 +18361,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2327554853049225020, guid: 0488453486476ad40add07a0d1c515c0,
+        type: 3}
+      propertyPath: speed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2327554853049225020, guid: 0488453486476ad40add07a0d1c515c0,
         type: 3}
