@@ -206,6 +206,17 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    private void EnterSwing(Vector3 pivotPos)
+    {
+        Debug.Log("Entered swing radius");
+        rBody.constraints = RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionZ;
+        controller.enabled = false;
+        pivotPosition = pivotPos;
+        //this.transform.LookAt(other.gameObject.transform);
+        //this.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x + 90, 90, 0);
+        swinging = true;
+    }
+
     private void ExitSwing()
     {
         if (exitSwingLock)
@@ -230,13 +241,17 @@ public class PlayerMovement : MonoBehaviour
 
         if (other.gameObject.tag == "Swing" && m_move.y > 0 && other.transform.position.y > this.transform.position.y) // Must get to swing and jump key held. Only if swing is above the player (Can't use contacts with trigger)
         {
-            Debug.Log("Entered swing radius");
-            rBody.constraints = RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionZ;
-            controller.enabled = false;
-            //this.transform.LookAt(other.gameObject.transform);
-            //this.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x + 90, 90, 0);
-            pivotPosition = other.gameObject.transform.position;
-            swinging = true;
+            EnterSwing(other.gameObject.transform.position);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        Debug.Log("Triggered collision");
+
+        if (other.gameObject.tag == "Swing" && m_move.y > 0 && other.transform.position.y > this.transform.position.y) // Must get to swing and jump key held. Only if swing is above the player (Can't use contacts with trigger)
+        {
+            EnterSwing(other.gameObject.transform.position);
         }
     }
 
@@ -263,6 +278,7 @@ public class PlayerMovement : MonoBehaviour
             //animator.SetBool("jump", false);
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Swing")
