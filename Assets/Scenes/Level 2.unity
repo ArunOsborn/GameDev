@@ -9765,6 +9765,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4962530466149844653, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 1.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962530466149844653, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
+        type: 3}
+      propertyPath: m_SkinWidth
+      value: 0.13
+      objectReference: {fileID: 0}
     - target: {fileID: 5293591747935545732, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
         type: 3}
       propertyPath: m_Size.y
