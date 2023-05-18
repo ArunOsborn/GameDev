@@ -41,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
     private float rotateMomentum = 0;
     public float rotateDrag = 2;
 
+    private bool exitSwingLock = false;
+
     private Animator animator;
 
     // Sound Effects
@@ -103,21 +105,21 @@ public class PlayerMovement : MonoBehaviour
     {
         if (swinging)
         {
-            float rotateForce = m_move.x; // TODO: move this update to update
+            float rotateForce = m_move.x/1.5f;
             if (rotateForce == 0)
             {
                 //rotateForce = 20/this.transform.rotation.eulerAngles.x;
             }
             float adj = (pivotPosition.y - transform.position.y);
             float opp = (pivotPosition.x - transform.position.x);
-            rotateMomentum += opp/2 + rotateForce;
+            rotateMomentum += opp/2.5f + rotateForce;
             rotateForce += rotateMomentum;
             this.transform.RotateAround(pivotPosition, new Vector3(0, 0, 1), rotateMomentum); // Swings player
             rotateMomentum = rotateMomentum / rotateDrag;
             //Debug.Log(((Math.Atan(-3 / 8) * 180f)/ (float)Math.PI) + " degrees"); // This makes no sense. It says 0!
             float angle = Mathf.Atan(opp / adj) * 180 / (float)Math.PI; // SOHCAHTOA T^-1(O/A) converted to degrees from radians
             Debug.Log("Player angle in relation to swing: " + angle);
-            this.transform.eulerAngles = new Vector3(angle, 90, 0);
+            //this.transform.eulerAngles = new Vector3(angle, 90, 0);
             Physics.SyncTransforms();
             Debug.Log("New player rotation: " + transform.rotation.eulerAngles);
         }
@@ -160,11 +162,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 Debug.Log("Swinging stopping in update");
                 ExitSwing();
-                movementOutputVector.x = Mathf.Cos(transform.rotation.eulerAngles.z) * rotateMomentum; // Use SOHCAHTOA here
-                movementOutputVector.y = Mathf.Sin(transform.rotation.eulerAngles.z) * rotateMomentum;
-                swinging = false;
-                Debug.Log("Jumped off swing: " + movementOutputVector.x + ", " + movementOutputVector.y);
-                
             }
         }
         else
@@ -211,10 +208,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void ExitSwing()
     {
+        if (exitSwingLock)
+            return;
+        exitSwingLock = true;
         rBody.constraints = standardConstraints;
         this.transform.rotation = Quaternion.Euler(0, 90, 0);
         controller.enabled = true;
         swinging = false;
+        float adj = (pivotPosition.y - transform.position.y);
+        float opp = (pivotPosition.x - transform.position.x);
+        float angle = Mathf.Atan(opp / adj) * 180 / (float)Math.PI;
+        movementOutputVector.x = Mathf.Cos(angle) * rotateMomentum; // Use SOHCAHTOA here
+        movementOutputVector.y = Mathf.Sin(angle) * rotateMomentum/10 + 0.2f;
+        Debug.Log("Jumped off swing: " + movementOutputVector.x + ", " + movementOutputVector.y + " momentum: " + rotateMomentum);
+        exitSwingLock = false;
     }
 
     private void OnTriggerEnter(Collider other)
