@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
     {
         audio = this.GetComponent<AudioSource>();
         standardConstraints = rBody.constraints;
-
+        Physics.IgnoreLayerCollision(0, 7);
     }
 
     public void SetMovement(InputAction.CallbackContext context)
