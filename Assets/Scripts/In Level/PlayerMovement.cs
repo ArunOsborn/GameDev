@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     // Swinging
     [SerializeField]  bool swinging = false;
     private Vector3 pivotPosition;
+    public float targetSwingRadius = 2;
 
     private float rotateMomentum = 0;
     public float rotateDrag = 2;
@@ -212,14 +213,19 @@ public class PlayerMovement : MonoBehaviour
         rBody.constraints = RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionZ;
         controller.enabled = false;
         pivotPosition = pivotPos;
-        //this.transform.LookAt(other.gameObject.transform);
-        //this.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x + 90, 90, 0);
+        float scalarDistance = (float)Math.Sqrt(Math.Pow(transform.position.x - pivotPos.x, 2) + Math.Pow(transform.position.y - pivotPos.y, 2));
+        Debug.Log("Distance from pivot: " + scalarDistance + " target swing radius: " + targetSwingRadius);
+        Vector3 vec3Distance = transform.position - pivotPos;
+        vec3Distance *= targetSwingRadius / scalarDistance;
+        transform.position = pivotPos + vec3Distance;
+        scalarDistance = (float)Math.Sqrt(Math.Pow(transform.position.x - pivotPos.x, 2) + Math.Pow(transform.position.y - pivotPos.y, 2));
+        Debug.Log("Fixed Distance from pivot: " + scalarDistance + " target swing radius: " + targetSwingRadius);
         swinging = true;
     }
 
     private void ExitSwing()
     {
-        if (exitSwingLock)
+        if (exitSwingLock) // Stops function being ran multiple times simultaneously
             return;
         exitSwingLock = true;
         rBody.constraints = standardConstraints;
