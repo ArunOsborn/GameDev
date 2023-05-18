@@ -1246,6 +1246,7 @@ MonoBehaviour:
   friction: 0.1
   maxJump: 0.2
   swinging: 0
+  targetSwingRadius: 4
   rotateDrag: 1.05
   landSound: {fileID: 8300000, guid: b06eae1660994481b834fdc261d51bdc, type: 3}
 --- !u!65 &5293591747935545732
@@ -1294,6 +1295,7 @@ MonoBehaviour:
   player: {fileID: 3986732010379445054}
   respawnPoint: {fileID: 0}
   body: {fileID: 0}
+  gameOver: 0
   HUD: {fileID: 0}
   lives: 3
 --- !u!135 &3871141756698007898

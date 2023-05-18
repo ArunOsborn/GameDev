@@ -120,7 +120,7 @@ public class PlayerMovement : MonoBehaviour
             //Debug.Log(((Math.Atan(-3 / 8) * 180f)/ (float)Math.PI) + " degrees"); // This makes no sense. It says 0!
             float angle = Mathf.Atan(opp / adj) * 180 / (float)Math.PI; // SOHCAHTOA T^-1(O/A) converted to degrees from radians
             Debug.Log("Player angle in relation to swing: " + angle);
-            //this.transform.eulerAngles = new Vector3(angle, 90, 0);
+            this.transform.eulerAngles = new Vector3(angle, 90, 0);
             Physics.SyncTransforms();
             Debug.Log("New player rotation: " + transform.rotation.eulerAngles);
         }
