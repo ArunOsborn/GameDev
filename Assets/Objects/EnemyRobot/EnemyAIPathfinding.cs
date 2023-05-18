@@ -31,10 +31,12 @@ public class EnemyAIPathfinding : MonoBehaviour
     Seeker seeker;
     Rigidbody rb;
     private Animator animator;
+    private Collider colliders;
 
     public bool collided;
     public bool jumpCollided;
     public bool jumping;
+    public bool dead;
 
     [SerializeField] private float speedOfRotation;
 
@@ -44,6 +46,8 @@ public class EnemyAIPathfinding : MonoBehaviour
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        colliders = GetComponent<Collider>();
+
 
         InvokeRepeating("UpdatePath", 0f, pathUpdateSeconds);
     }
@@ -51,7 +55,7 @@ public class EnemyAIPathfinding : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        if (TargetInDistance())
+        if (TargetInDistance() && !dead)
         {
             animator.SetBool("isRunning", true);
             PathFollow();
@@ -64,7 +68,7 @@ public class EnemyAIPathfinding : MonoBehaviour
 
     private void UpdatePath()
     {
-        if(followEnabled && TargetInDistance() && seeker.IsDone())
+        if(followEnabled && TargetInDistance() && seeker.IsDone() && !dead)
         {
             seeker.StartPath(rb.position, target.position, OnPathComplete);
         }
@@ -152,10 +156,13 @@ public class EnemyAIPathfinding : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.collider.tag == "Banana")
+        Debug.Log("dfuijhawduhawd : " + collision.collider.tag);
+        if(collision.collider.tag == "Banana" || collision.collider.tag == "Obstacle" || collision.collider.tag == "Lava")
         {
-            Destroy(collision.gameObject);
-            Destroy(this.gameObject);
+            dead = true;
+            Destroy(colliders);
+            Destroy(rb);
+            animator.enabled = false;
         }
 
         if (collision.collider)
@@ -165,6 +172,17 @@ public class EnemyAIPathfinding : MonoBehaviour
         else
         {
             collided = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Obstacle")
+        {
+            dead = true;
+            Destroy(colliders);
+            Destroy(rb);
+            animator.enabled = false;
         }
     }
 }

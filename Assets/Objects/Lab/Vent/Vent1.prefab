@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7142449675538295786}
   - component: {fileID: 4689383552323683370}
   - component: {fileID: 8002952739546590419}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Vent1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

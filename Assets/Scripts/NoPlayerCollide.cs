@@ -6,7 +6,7 @@ public class NoPlayerCollide : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision) // Stops player jumping on banana when they throw it.
     {
-        Debug.Log("Tag: " + collision.gameObject.tag+" Name: "+collision.gameObject.name);
+        //Debug.Log("Tag: " + collision.gameObject.tag+" Name: "+collision.gameObject.name);
         if (collision.gameObject.tag == "Player")
         {
             Physics.IgnoreCollision(gameObject.GetComponent<CapsuleCollider>(), collision.collider);

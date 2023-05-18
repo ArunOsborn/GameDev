@@ -94,6 +94,14 @@ public class PlayerHealth : MonoBehaviour
         {
             gameOver = true;
         }
+        if(other.collider.tag == "JumpCollider")
+        {
+            gameOver = true;
+        }
+        if(other.collider.tag == "Lava")
+        {
+            LoseLife();
+        }
     }
 
     private void OnCollisionStay(Collision collision)

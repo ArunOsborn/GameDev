@@ -7,19 +7,23 @@ public class Grounded : MonoBehaviour
 {
     EnemyAIPathfinding enemyGroundedVariable;
     [SerializeField] GameObject enemy;
+    private Collider collider;
     int layerName;
 
     // Start is called before the first frame update
     void Start()
     {
+        collider = GetComponent<Collider>();
         enemyGroundedVariable = enemy.GetComponent<EnemyAIPathfinding>();
         layerName = LayerMask.NameToLayer("Level");
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-
+        if(enemyGroundedVariable.dead)
+        {
+            Destroy(collider);
+        }
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -34,6 +38,8 @@ public class Grounded : MonoBehaviour
 
     private void OnTriggerStay(Collider collision)
     {
+        Debug.Log(true);
+
         if (collision.gameObject.layer == layerName)
         {
             if (!enemyGroundedVariable.isGrounded)
