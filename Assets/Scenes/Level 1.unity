@@ -8731,6 +8731,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOver: {fileID: 1223019678}
   health: {fileID: 1886433972}
+  player: {fileID: 381445486}
 --- !u!114 &861170140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8745,6 +8746,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   completeLevel: {fileID: 1919150515}
   finishLevel: {fileID: 1709037641}
+  player: {fileID: 381445486}
 --- !u!1 &863520293
 GameObject:
   m_ObjectHideFlags: 0

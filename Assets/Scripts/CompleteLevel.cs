@@ -6,6 +6,7 @@ public class CompleteLevel : MonoBehaviour
 {
     public GameObject completeLevel;
     public FinishLevel finishLevel;
+    public GameObject player;
 
     private void Awake()
     {
@@ -18,6 +19,7 @@ public class CompleteLevel : MonoBehaviour
         if(finishLevel.finish)
         {
             completeLevel.SetActive(true);
+            player.SetActive(false);
             Time.timeScale = 0.0f;
             Cursor.visible = true;
         }
