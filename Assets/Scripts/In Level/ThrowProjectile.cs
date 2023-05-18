@@ -26,7 +26,7 @@ public class ThrowProjectile : MonoBehaviour
 
     public void Fire(InputAction.CallbackContext context) // Gets called when fire button pressed
     {
-        Debug.Log(context);
+        //Debug.Log(context);
         m_fire = context.ReadValueAsButton();
     }
 
@@ -39,19 +39,20 @@ public class ThrowProjectile : MonoBehaviour
         {
             cooldown = fireCooldownTime;
             newProjectile = Object.Instantiate(projectileObject);
-            Debug.Log("Rotation: " + this.transform.rotation.eulerAngles.y);
+            Physics.IgnoreCollision(newProjectile.transform.GetComponent<Collider>(),GetComponent<Collider>());
+            //Debug.Log("Rotation: " + this.transform.rotation.eulerAngles.y);
 
             if (this.transform.rotation.eulerAngles.y < 180)
             {
-                Debug.Log("Right throw");
-                newProjectile.transform.position = new Vector3(this.transform.position.x + 1, this.transform.position.y + 1, this.transform.position.z);
-                newProjectile.GetComponent<Rigidbody>().velocity = new Vector3(projectileSpeed, 3, 0); // TODO: Change velocity dependant on the direction the monkey faces
+                //Debug.Log("Right throw");
+                newProjectile.transform.position = new Vector3(this.transform.position.x + 1.2f, this.transform.position.y + 1, this.transform.position.z);
+                newProjectile.GetComponent<Rigidbody>().velocity = new Vector3(projectileSpeed, 3, 0);
             }
             else
             {
-                Debug.Log("Left throw");
-                newProjectile.transform.position = new Vector3(this.transform.position.x - 1, this.transform.position.y + 1, this.transform.position.z);
-                newProjectile.GetComponent<Rigidbody>().velocity = new Vector3(-projectileSpeed, 3, 0); ; // TODO: Change velocity dependant on the direction the monkey faces
+                //Debug.Log("Left throw");
+                newProjectile.transform.position = new Vector3(this.transform.position.x - 1.2f, this.transform.position.y + 1, this.transform.position.z);
+                newProjectile.GetComponent<Rigidbody>().velocity = new Vector3(-projectileSpeed, 3, 0); ;
             }
 
             //Debug.Log("setting to true");
@@ -77,6 +78,25 @@ public class ThrowProjectile : MonoBehaviour
 
             //Debug.Log("setting to false");
             animator.SetBool("m_fire", false);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision) // Stops player jumping on banana when they throw it.
+    {
+        Debug.Log("Tag: "+collision.gameObject.tag);
+        if (collision.gameObject.tag=="Banana")
+        {
+            Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), collision.collider);
+            Debug.Log("Banana collision ignored");
+        }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Banana")
+        {
+            Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), collision.collider);
+            Debug.Log("Banana collision ignored");
         }
     }
 }

@@ -240,7 +240,7 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Ignoring collision with self");
             Physics.IgnoreCollision(this.gameObject.GetComponent<BoxCollider>(), collision.collider);
         }
-        Debug.Log(this.gameObject.name+ " collided with "+collision.gameObject.name);
+        //Debug.Log(this.gameObject.name+ " collided with "+collision.gameObject.name);
         if (!Grounded && !swinging)
         {
             jumpDuration = maxJump; // When the player hits something above them, extending the jump doesn't work.
