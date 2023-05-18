@@ -4309,31 +4309,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 4510135188550168708, guid: 304b05e9bc657774a8d831df5579e818,
-        type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4510135188550168708, guid: 304b05e9bc657774a8d831df5579e818,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 4510135188550168708, guid: 304b05e9bc657774a8d831df5579e818,
-        type: 3}
-      propertyPath: m_Interpolate
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4510135188550168708, guid: 304b05e9bc657774a8d831df5579e818,
-        type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4510135188550168708, guid: 304b05e9bc657774a8d831df5579e818,
-        type: 3}
-      propertyPath: m_CollisionDetection
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4510135188550168709, guid: 304b05e9bc657774a8d831df5579e818,
         type: 3}
       propertyPath: m_RootOrder
@@ -5921,31 +5896,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4510135188550168708, guid: 304b05e9bc657774a8d831df5579e818,
-        type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4510135188550168708, guid: 304b05e9bc657774a8d831df5579e818,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 4510135188550168708, guid: 304b05e9bc657774a8d831df5579e818,
-        type: 3}
-      propertyPath: m_Interpolate
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4510135188550168708, guid: 304b05e9bc657774a8d831df5579e818,
-        type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4510135188550168708, guid: 304b05e9bc657774a8d831df5579e818,
-        type: 3}
-      propertyPath: m_CollisionDetection
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4510135188550168709, guid: 304b05e9bc657774a8d831df5579e818,
         type: 3}
@@ -9528,26 +9478,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962530466149844653, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 1.66
-      objectReference: {fileID: 0}
-    - target: {fileID: 4962530466149844653, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
-        type: 3}
-      propertyPath: m_SkinWidth
-      value: 0.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 5293591747935545732, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 2.8170195
-      objectReference: {fileID: 0}
-    - target: {fileID: 5293591747935545732, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 1.6537409
       objectReference: {fileID: 0}
     - target: {fileID: 5479229096036118606, guid: 90827ad7d0ca6459bbe81ce1e791c23c,
         type: 3}
