@@ -28,17 +28,17 @@ public class Grounded : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        Debug.Log(collision.gameObject.layer);
+        //Debug.Log(collision.gameObject.layer);
         if(collision.gameObject.layer == layerName)
         {
             enemyGroundedVariable.isGrounded = true;
-            Debug.Log("Enemy grounded variable: " + enemyGroundedVariable.isGrounded);
+            //Debug.Log("Enemy grounded variable: " + enemyGroundedVariable.isGrounded);
         }
     }
 
     private void OnTriggerStay(Collider collision)
     {
-        Debug.Log(true);
+        //Debug.Log(true);
 
         if (collision.gameObject.layer == layerName)
         {
@@ -55,7 +55,7 @@ public class Grounded : MonoBehaviour
         {
             enemyGroundedVariable.isGrounded = false;
 
-            Debug.Log("Enemy grounded variable: " + enemyGroundedVariable.isGrounded);
+            //Debug.Log("Enemy grounded variable: " + enemyGroundedVariable.isGrounded);
         }
     }
 }

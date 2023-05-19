@@ -291,11 +291,17 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            /*Vector3 collisionForce = collision.impulse / Time.fixedDeltaTime;
+            Debug.Log("Collision force: " + collisionForce);
+            if (collisionForce.y > 0.5f)
+            {*/
             // Plays landing sound
             audio.clip = landSound;
             audio.Play();
             Debug.Log("Played landing sound");
             //animator.SetBool("jump", false);
+            //}
+
         }
     }
 

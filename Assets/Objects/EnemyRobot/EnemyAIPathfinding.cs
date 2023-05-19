@@ -156,7 +156,7 @@ public class EnemyAIPathfinding : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("dfuijhawduhawd : " + collision.collider.tag);
+        //Debug.Log("dfuijhawduhawd : " + collision.collider.tag);
         if(collision.collider.tag == "Banana" || collision.collider.tag == "Obstacle" || collision.collider.tag == "Lava")
         {
             dead = true;

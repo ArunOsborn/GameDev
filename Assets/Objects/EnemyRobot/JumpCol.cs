@@ -32,7 +32,7 @@ public class JumpCol : MonoBehaviour
         if (collision.gameObject.layer == layerName)
         {
             enemyJumpColVariable.jumpCollided = true;
-            Debug.Log("Enemy Jump Variable: " + enemyJumpColVariable.jumpCollided);
+            //Debug.Log("Enemy Jump Variable: " + enemyJumpColVariable.jumpCollided);
         }
     }
 
@@ -41,7 +41,7 @@ public class JumpCol : MonoBehaviour
         if (collision.gameObject.layer == layerName)
         {
             enemyJumpColVariable.jumpCollided = false;
-            Debug.Log("Enemy Jump Variable: " + enemyJumpColVariable.jumpCollided);
+            //Debug.Log("Enemy Jump Variable: " + enemyJumpColVariable.jumpCollided);
         }
     }
 }
