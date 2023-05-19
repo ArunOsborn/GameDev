@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -409,8 +409,8 @@ GameObject:
   m_Component:
   - component: {fileID: 469004105}
   - component: {fileID: 469004104}
-  - component: {fileID: 469004103}
   - component: {fileID: 469004106}
+  - component: {fileID: 469004107}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -418,26 +418,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &469004103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 469004102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
 --- !u!114 &469004104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,7 +430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 1198664760}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &469004105
@@ -480,6 +460,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87640a62359cd4fba854e776378d5f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &469004107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 469004102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: 0f3d60f2c17e14907869763f13a264fe,
+    type: 3}
+  m_PointAction: {fileID: -7562354145395647163, guid: 0f3d60f2c17e14907869763f13a264fe,
+    type: 3}
+  m_MoveAction: {fileID: -5277603025921114440, guid: 0f3d60f2c17e14907869763f13a264fe,
+    type: 3}
+  m_SubmitAction: {fileID: -1002707681475335026, guid: 0f3d60f2c17e14907869763f13a264fe,
+    type: 3}
+  m_CancelAction: {fileID: 1052346855319446120, guid: 0f3d60f2c17e14907869763f13a264fe,
+    type: 3}
+  m_LeftClickAction: {fileID: -6711941333289373247, guid: 0f3d60f2c17e14907869763f13a264fe,
+    type: 3}
+  m_MiddleClickAction: {fileID: 26488286200563500, guid: 0f3d60f2c17e14907869763f13a264fe,
+    type: 3}
+  m_RightClickAction: {fileID: -6237886769531519159, guid: 0f3d60f2c17e14907869763f13a264fe,
+    type: 3}
+  m_ScrollWheelAction: {fileID: 2065460370934103710, guid: 0f3d60f2c17e14907869763f13a264fe,
+    type: 3}
+  m_TrackedDevicePositionAction: {fileID: -4322039638021147218, guid: 0f3d60f2c17e14907869763f13a264fe,
+    type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: -2942271742797405099, guid: 0f3d60f2c17e14907869763f13a264fe,
+    type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
 --- !u!1001 &728732709
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -759,6 +780,12 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 357307411910323955, guid: c235371e87349418ab0015d7d0e87081,
     type: 3}
   m_PrefabInstance: {fileID: 739714558}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1198664760 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 357307411910323954, guid: c235371e87349418ab0015d7d0e87081,
+    type: 3}
+  m_PrefabInstance: {fileID: 28908658}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &1215614675 stripped
 RectTransform:
