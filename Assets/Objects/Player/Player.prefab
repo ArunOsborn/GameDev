@@ -1298,6 +1298,7 @@ MonoBehaviour:
   gameOver: 0
   HUD: {fileID: 0}
   lives: 3
+  jumpOnHurt: 0.4
   monkeyHurt: {fileID: 8300000, guid: 12c2870bfe581428dbf5dc4d2d47d9fa, type: 3}
 --- !u!135 &3871141756698007898
 SphereCollider:

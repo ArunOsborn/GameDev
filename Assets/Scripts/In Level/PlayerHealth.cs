@@ -18,6 +18,7 @@ public class PlayerHealth : MonoBehaviour
 
     public int lives = 3;
 
+    public float jumpOnHurt = 0.2f;
     public AudioClip monkeyHurt;
     private AudioSource audioSource;
 
@@ -75,6 +76,7 @@ public class PlayerHealth : MonoBehaviour
                 SkinnedMeshRenderer renderer = body.GetComponent<SkinnedMeshRenderer>();
                 originalBodyColour = renderer.material.color;
                 renderer.material.color = new Color(originalBodyColour.r+0.2f,originalBodyColour.g,originalBodyColour.b,originalBodyColour.a/2);
+                gameObject.GetComponent<PlayerMovement>().AddExternalMovementFactor(new Vector3(0,jumpOnHurt,0));
                 /*foreach (Transform child in this.gameObject.GetComponentInChildren<Transform>().gameObject.GetComponentsInChildren<Transform>())
                 {
                     child.gameObject.GetComponent<Renderer>().material.color = new Color(20,20,20);
@@ -103,7 +105,7 @@ public class PlayerHealth : MonoBehaviour
         }
         if(other.collider.tag == "Lava")
         {
-            LoseLife();
+            gameOver = true;
         }
     }
 

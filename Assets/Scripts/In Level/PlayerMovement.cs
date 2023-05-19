@@ -104,6 +104,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void AddExternalMovementFactor(Vector3 external)
+    {
+        movementOutputVector += external;
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
