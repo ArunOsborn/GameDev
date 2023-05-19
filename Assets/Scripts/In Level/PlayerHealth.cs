@@ -18,24 +18,15 @@ public class PlayerHealth : MonoBehaviour
 
     public int lives = 3;
 
+    public float jumpOnHurt = 0.2f;
+    public AudioClip monkeyHurt;
+    private AudioSource audioSource;
+
     private bool healthLock = false; // When true, player cannot be hurt
 
     private void Awake()
     {
-        /*Debug.Log("This player's lives: " + lives);
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        if (players.Length > 1)
-        {
-            foreach (GameObject player in players)
-            {
-                if (player != this.gameObject)
-                {
-                    Destroy(player);
-                    Debug.Log("Destryed uneeded player :)");
-                }
-            }
-        }
-        DontDestroyOnLoad(this.gameObject);*/
+        
     }
 
     private void Start()
@@ -43,6 +34,7 @@ public class PlayerHealth : MonoBehaviour
         body = transform.Find("Body").gameObject;
         gameOver = false;
         animator = GetComponent<Animator>();
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
     private void FixedUpdate()
     {
@@ -66,6 +58,8 @@ public class PlayerHealth : MonoBehaviour
             Invoke("EndInvincibleTime", 1);
             lives--;
             Debug.Log("Lives: " + lives);
+            audioSource.PlayOneShot(monkeyHurt);
+
             if (lives <= 0)
             {
                 gameOver = true;
@@ -82,6 +76,7 @@ public class PlayerHealth : MonoBehaviour
                 SkinnedMeshRenderer renderer = body.GetComponent<SkinnedMeshRenderer>();
                 originalBodyColour = renderer.material.color;
                 renderer.material.color = new Color(originalBodyColour.r+0.2f,originalBodyColour.g,originalBodyColour.b,originalBodyColour.a/2);
+                gameObject.GetComponent<PlayerMovement>().AddExternalMovementFactor(new Vector3(0,jumpOnHurt,0));
                 /*foreach (Transform child in this.gameObject.GetComponentInChildren<Transform>().gameObject.GetComponentsInChildren<Transform>())
                 {
                     child.gameObject.GetComponent<Renderer>().material.color = new Color(20,20,20);
@@ -110,7 +105,7 @@ public class PlayerHealth : MonoBehaviour
         }
         if(other.collider.tag == "Lava")
         {
-            LoseLife();
+            gameOver = true;
         }
     }
 
