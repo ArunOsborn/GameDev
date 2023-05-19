@@ -9,6 +9,8 @@ using UnityEngine.InputSystem.XR.Haptics;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private PlayerHealth playerHealth;
+
     public float speed = 1;
     public float jumpSpeed = 0.2f;
     public float gravity = 1;
@@ -69,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
         playerControls = new PlayerControls();
         controller = GetComponent<CharacterController>();
         rBody = this.GetComponent<Rigidbody>();
+        playerHealth = this.GetComponent<PlayerHealth>();
     }
 
     private void Start()
@@ -104,107 +107,113 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (swinging)
+        if(!playerHealth.gameOver)
         {
-            float rotateForce = m_move.x/1.5f;
-            if (rotateForce == 0)
+            if (swinging)
             {
-                //rotateForce = 20/this.transform.rotation.eulerAngles.x;
-            }
-            float adj = (pivotPosition.y - transform.position.y);
-            float opp = (pivotPosition.x - transform.position.x);
-            rotateMomentum += opp/2.5f + rotateForce;
-            rotateForce += rotateMomentum;
-            this.transform.RotateAround(pivotPosition, new Vector3(0, 0, 1), rotateMomentum); // Swings player
-            rotateMomentum = rotateMomentum / rotateDrag;
-            //Debug.Log(((Math.Atan(-3 / 8) * 180f)/ (float)Math.PI) + " degrees"); // This makes no sense. It says 0!
-            float angle = Mathf.Atan(opp / adj) * 180 / (float)Math.PI; // SOHCAHTOA T^-1(O/A) converted to degrees from radians
-            Debug.Log("Player angle in relation to swing: " + angle);
-            this.transform.eulerAngles = new Vector3(angle, 90, 0);
-            Physics.SyncTransforms();
-            Debug.Log("New player rotation: " + transform.rotation.eulerAngles);
-        }
-        else
-        {
-            if (Grounded)
-            {
-                movementOutputVector.y = -0.02f; // Keeps player stuck to ground
+                float rotateForce = m_move.x/1.5f;
+                if (rotateForce == 0)
+                {
+                    //rotateForce = 20/this.transform.rotation.eulerAngles.x;
+                }
+                float adj = (pivotPosition.y - transform.position.y);
+                float opp = (pivotPosition.x - transform.position.x);
+                rotateMomentum += opp/2.5f + rotateForce;
+                rotateForce += rotateMomentum;
+                this.transform.RotateAround(pivotPosition, new Vector3(0, 0, 1), rotateMomentum); // Swings player
+                rotateMomentum = rotateMomentum / rotateDrag;
+                //Debug.Log(((Math.Atan(-3 / 8) * 180f)/ (float)Math.PI) + " degrees"); // This makes no sense. It says 0!
+                float angle = Mathf.Atan(opp / adj) * 180 / (float)Math.PI; // SOHCAHTOA T^-1(O/A) converted to degrees from radians
+                Debug.Log("Player angle in relation to swing: " + angle);
+                this.transform.eulerAngles = new Vector3(angle, 90, 0);
+                Physics.SyncTransforms();
+                Debug.Log("New player rotation: " + transform.rotation.eulerAngles);
             }
             else
             {
-                if (m_move.y > 0 && jumpDuration < maxJump) // Times jump button for higher/lower jumps
+                if (Grounded)
                 {
-                    jumpDuration += Time.fixedDeltaTime;
+                    movementOutputVector.y = -0.02f; // Keeps player stuck to ground
                 }
                 else
-                    movementOutputVector.y += -gravity;
+                {
+                    if (m_move.y > 0 && jumpDuration < maxJump) // Times jump button for higher/lower jumps
+                    {
+                        jumpDuration += Time.fixedDeltaTime;
+                    }
+                    else
+                        movementOutputVector.y += -gravity;
+                }
+                movementMomentum = new Vector3(Mathf.Lerp(movementMomentum.x, movementOutputVector.x, friction),movementOutputVector.y,movementOutputVector.z);
+                controller.Move(movementMomentum); // Moves the player with values calculated above and in Update()
             }
-            movementMomentum = new Vector3(Mathf.Lerp(movementMomentum.x, movementOutputVector.x, friction),movementOutputVector.y,movementOutputVector.z);
-            controller.Move(movementMomentum); // Moves the player with values calculated above and in Update()
+
+
+            //Debug.Log(movementVector.x + ", " + movementVector.y);
+            Grounded = controller.isGrounded;
+            if (!Grounded && !swinging)
+                animator.SetBool("jump", true);
+            else
+                animator.SetBool("jump", false);
+
+
+            FlipPlayer();
         }
-
-
-        //Debug.Log(movementVector.x + ", " + movementVector.y);
-        Grounded = controller.isGrounded;
-        if (!Grounded && !swinging)
-            animator.SetBool("jump", true);
-        else
-            animator.SetBool("jump", false);
-
-
-        FlipPlayer();
+        
     }
 
     private void Update()
     {
-        if (swinging)
+        if(!playerHealth.gameOver)
         {
-            if (m_move.y <= 0) // When player stops holding jump button
+            if (swinging)
             {
-                Debug.Log("Swinging stopping in update");
-                ExitSwing();
+                if (m_move.y <= 0) // When player stops holding jump button
+                {
+                    Debug.Log("Swinging stopping in update");
+                    ExitSwing();
+                }
+            }
+            else
+            {
+                movementOutputVector.x = m_move.x * speed;
+            }
+            if (m_move.y>0)
+            {
+                //Debug.Log("Attempted jump. Grounded=" + Grounded);
+                if (Grounded)
+                {
+                    // TODO: Check the player isn't hitting something above them to do the next part
+                    movementOutputVector.y = jumpSpeed;
+                    jumpDuration = 0;
+                    //Debug.Log("Jump stopped. Movement is: "+movementOutputVector.x + ", " + movementOutputVector.y);
+                    //animator.SetBool("jump", true);
+                    Grounded = false;
+                }            
+
+            }
+            float test = Mathf.Clamp01(movementOutputVector.magnitude);
+
+            if (movementOutputVector.x > 0)
+            {
+                ifDirectionChanged = false;
+                animator.SetBool("running", true);
+                animator.SetFloat("Blend", 1.0f, 0.05f, Time.deltaTime);
+                //Debug.Log("move right");
+            }
+            else if (movementOutputVector.x < 0)
+            {
+                ifDirectionChanged = true;
+                animator.SetBool("running", true);
+                animator.SetFloat("Blend", 1.0f, 0.05f, Time.deltaTime);
+                //Debug.Log("move left");
+            }
+            else
+            {
+                animator.SetBool("running", false);
+                animator.SetFloat("Blend", test, 0.05f, Time.deltaTime);
             }
         }
-        else
-        {
-            movementOutputVector.x = m_move.x * speed;
-        }
-        if (m_move.y>0)
-        {
-            //Debug.Log("Attempted jump. Grounded=" + Grounded);
-            if (Grounded)
-            {
-                // TODO: Check the player isn't hitting something above them to do the next part
-                movementOutputVector.y = jumpSpeed;
-                jumpDuration = 0;
-                //Debug.Log("Jump stopped. Movement is: "+movementOutputVector.x + ", " + movementOutputVector.y);
-                //animator.SetBool("jump", true);
-                Grounded = false;
-            }            
-
-        }
-        float test = Mathf.Clamp01(movementOutputVector.magnitude);
-
-        if (movementOutputVector.x > 0)
-        {
-            ifDirectionChanged = false;
-            animator.SetBool("running", true);
-            animator.SetFloat("Blend", 1.0f, 0.05f, Time.deltaTime);
-            //Debug.Log("move right");
-        }
-        else if (movementOutputVector.x < 0)
-        {
-            ifDirectionChanged = true;
-            animator.SetBool("running", true);
-            animator.SetFloat("Blend", 1.0f, 0.05f, Time.deltaTime);
-            //Debug.Log("move left");
-        }
-        else
-        {
-            animator.SetBool("running", false);
-            animator.SetFloat("Blend", test, 0.05f, Time.deltaTime);
-        }
-
     }
 
     private void EnterSwing(Vector3 pivotPos)

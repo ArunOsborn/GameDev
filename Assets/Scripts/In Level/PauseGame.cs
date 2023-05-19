@@ -6,6 +6,8 @@ public class PauseGame : MonoBehaviour
 {
     public GameObject pauseMenu;
     public bool Paused = false;
+    public PlayerHealth health;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -21,16 +23,19 @@ public class PauseGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Paused == false)
+        if(!health.gameOver)
         {
-            ResumeCheck();
+            if (Paused == false)
+            {
+                ResumeCheck();
 
+            }
+            else
+            {
+                PauseCheck();
+            }
         }
-        else
-        {
-            PauseCheck();
-        }
+
     }
 
     public void PauseCheck()

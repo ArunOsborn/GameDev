@@ -39,6 +39,7 @@ public class ThrowProjectile : MonoBehaviour
         {
             cooldown = fireCooldownTime;
             newProjectile = Object.Instantiate(projectileObject);
+            newProjectile.layer = 8;
             Physics.IgnoreCollision(newProjectile.transform.GetComponent<Collider>(),GetComponent<Collider>());
             //Debug.Log("Rotation: " + this.transform.rotation.eulerAngles.y);
 

@@ -7,6 +7,7 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private Transform player;
     [SerializeField] private Transform respawnPoint;
+    private Animator animator;
 
     [SerializeField] private GameObject body;
     private Color originalBodyColour;
@@ -41,6 +42,14 @@ public class PlayerHealth : MonoBehaviour
     {
         body = transform.Find("Body").gameObject;
         gameOver = false;
+        animator = GetComponent<Animator>();
+    }
+    private void FixedUpdate()
+    {
+        if (gameOver)
+        {
+            animator.enabled = false;
+        }
     }
 
     private void EndInvincibleTime()
@@ -59,6 +68,7 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log("Lives: " + lives);
             if (lives <= 0)
             {
+                gameOver = true;
                 //Debug.Log("canvas active");
                 //SceneManager.LoadSceneAsync(PlayerPrefs.GetString("Selected Level"));
                 //GameObject.Find("EventSystem").GetComponent<SceneHandler>().LoadMainMenu();

@@ -7,6 +7,7 @@ public class GameOver : MonoBehaviour
     public GameObject gameOver;
     public PlayerHealth health;
     public GameObject player;
+    private float timeToEnd = .5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,10 +19,15 @@ public class GameOver : MonoBehaviour
     {
         if(health.lives <= 0 || health.gameOver)
         {
+            Debug.Log(timeToEnd);
+            timeToEnd -= Time.deltaTime;
+            if (timeToEnd <= 0)
+            {
+                Time.timeScale = 0.0f;
+                Cursor.visible = true;
+            }
             gameOver.SetActive(true);
-            player.SetActive(false);
-            Time.timeScale = 0.0f;
-            Cursor.visible = true;
+            //player.SetActive(false);
         }
     }
 }
