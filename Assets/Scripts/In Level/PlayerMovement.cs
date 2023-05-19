@@ -228,12 +228,12 @@ public class PlayerMovement : MonoBehaviour
         controller.enabled = false;
         pivotPosition = pivotPos;
         float scalarDistance = (float)Math.Sqrt(Math.Pow(transform.position.x - pivotPos.x, 2) + Math.Pow(transform.position.y - pivotPos.y, 2));
-        Debug.Log("Distance from pivot: " + scalarDistance + " target swing radius: " + targetSwingRadius);
+        //Debug.Log("Distance from pivot: " + scalarDistance + " target swing radius: " + targetSwingRadius);
         Vector3 vec3Distance = transform.position - pivotPos;
         vec3Distance *= targetSwingRadius / scalarDistance;
         transform.position = pivotPos + vec3Distance;
         scalarDistance = (float)Math.Sqrt(Math.Pow(transform.position.x - pivotPos.x, 2) + Math.Pow(transform.position.y - pivotPos.y, 2));
-        Debug.Log("Fixed Distance from pivot: " + scalarDistance + " target swing radius: " + targetSwingRadius);
+        //Debug.Log("Fixed Distance from pivot: " + scalarDistance + " target swing radius: " + targetSwingRadius);
         swinging = true;
     }
 
@@ -282,23 +282,31 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Ignoring collision with self");
             Physics.IgnoreCollision(this.gameObject.GetComponent<BoxCollider>(), collision.collider);
         }
-        //Debug.Log(this.gameObject.name+ " collided with "+collision.gameObject.name);
+        Debug.Log(this.gameObject.name+ " collided with "+collision.gameObject.name);
         if (!Grounded && !swinging)
         {
-            jumpDuration = maxJump; // When the player hits something above them, extending the jump doesn't work.
-            movementOutputVector.y = -gravity;
-            Debug.Log("Head hit by non-swing. Stopping jump.");
+            if (collision.gameObject.tag != "Swing")
+            {
+                jumpDuration = maxJump; // When the player hits something above them, extending the jump doesn't work.
+                movementOutputVector.y = -gravity;
+                Debug.Log("Head hit by non-swing. Stopping jump.");
+            }
+            
         }
         else
         {
+            if (Grounded)
+            {
+                // Plays landing sound
+                audio.clip = landSound;
+                audio.Play();
+                Debug.Log("Played landing sound");
+            }
             /*Vector3 collisionForce = collision.impulse / Time.fixedDeltaTime;
             Debug.Log("Collision force: " + collisionForce);
             if (collisionForce.y > 0.5f)
             {*/
-            // Plays landing sound
-            audio.clip = landSound;
-            audio.Play();
-            Debug.Log("Played landing sound");
+            
             //animator.SetBool("jump", false);
             //}
 
