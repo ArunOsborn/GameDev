@@ -249,8 +249,19 @@ public class PlayerMovement : MonoBehaviour
         float adj = (pivotPosition.y - transform.position.y);
         float opp = (pivotPosition.x - transform.position.x);
         float angle = Mathf.Atan(opp / adj) * 180 / (float)Math.PI;
-        movementOutputVector.x = Mathf.Cos(angle) * rotateMomentum; // Use SOHCAHTOA here
-        movementOutputVector.y = Mathf.Sin(angle) * rotateMomentum/10 + 0.2f;
+        
+        if (rotateMomentum < 0) // Fixes issue where x vector is calculated in the wrong direction
+        {
+            movementOutputVector.x = -Math.Abs(Mathf.Cos(angle) * rotateMomentum); // Use SOHCAHTOA here
+        }
+        else
+        {
+            movementOutputVector.x = Math.Abs(Mathf.Cos(angle) * rotateMomentum);
+        }
+        
+        movementOutputVector.y = Mathf.Sin(angle) * rotateMomentum;
+        // Limits vertical momentum
+        movementOutputVector.y = (float)Math.Pow(movementOutputVector.y,1/3)/2;
         Debug.Log("Jumped off swing: " + movementOutputVector.x + ", " + movementOutputVector.y + " momentum: " + rotateMomentum);
         exitSwingLock = false;
     }
