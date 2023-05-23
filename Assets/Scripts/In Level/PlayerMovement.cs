@@ -117,17 +117,12 @@ public class PlayerMovement : MonoBehaviour
             if (swinging)
             {
                 float rotateForce = m_move.x/1.5f;
-                if (rotateForce == 0)
-                {
-                    //rotateForce = 20/this.transform.rotation.eulerAngles.x;
-                }
                 float adj = (pivotPosition.y - transform.position.y);
                 float opp = (pivotPosition.x - transform.position.x);
-                rotateMomentum += opp/2.5f + rotateForce;
+                rotateMomentum += opp/2.5f + rotateForce; // Uses opposite to act as a sort of gravity. The further away from the center of the poll, the greater the force to go back to the center is
                 rotateForce += rotateMomentum;
                 this.transform.RotateAround(pivotPosition, new Vector3(0, 0, 1), rotateMomentum); // Swings player
                 rotateMomentum = rotateMomentum / rotateDrag;
-                //Debug.Log(((Math.Atan(-3 / 8) * 180f)/ (float)Math.PI) + " degrees"); // This makes no sense. It says 0!
                 float angle = Mathf.Atan(opp / adj) * 180 / (float)Math.PI; // SOHCAHTOA T^-1(O/A) converted to degrees from radians
                 Debug.Log("Player angle in relation to swing: " + angle);
                 this.transform.eulerAngles = new Vector3(angle, 90, 0);
