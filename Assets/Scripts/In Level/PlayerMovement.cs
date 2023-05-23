@@ -260,8 +260,9 @@ public class PlayerMovement : MonoBehaviour
         }
         
         movementOutputVector.y = Mathf.Sin(angle) * rotateMomentum;
-        // Limits vertical momentum
-        movementOutputVector.y = (float)Math.Pow(movementOutputVector.y,1/3)/2;
+        if (Math.Abs(movementOutputVector.y) > 0.08f)
+            // Limits vertical momentum
+            movementOutputVector.y = (float)Math.Pow(movementOutputVector.y,1/3)/2;
         Debug.Log("Jumped off swing: " + movementOutputVector.x + ", " + movementOutputVector.y + " momentum: " + rotateMomentum);
         exitSwingLock = false;
     }
