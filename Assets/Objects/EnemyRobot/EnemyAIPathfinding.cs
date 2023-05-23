@@ -154,15 +154,21 @@ public class EnemyAIPathfinding : MonoBehaviour
         }
     }
 
+    private void RobotDeath()
+    {
+        GetComponent<AudioSource>().Play();
+        dead = true;
+        Destroy(colliders);
+        Destroy(rb);
+        animator.enabled = false;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log("dfuijhawduhawd : " + collision.collider.tag);
         if(collision.collider.tag == "Banana" || collision.collider.tag == "Obstacle" || collision.collider.tag == "Lava")
         {
-            dead = true;
-            Destroy(colliders);
-            Destroy(rb);
-            animator.enabled = false;
+            RobotDeath();
         }
 
         if (collision.collider)
@@ -179,10 +185,7 @@ public class EnemyAIPathfinding : MonoBehaviour
     {
         if (other.tag == "Obstacle")
         {
-            dead = true;
-            Destroy(colliders);
-            Destroy(rb);
-            animator.enabled = false;
+            RobotDeath();
         }
     }
 }
