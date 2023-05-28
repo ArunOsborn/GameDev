@@ -14,8 +14,8 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: ArunJoey
   productName: Monkey With A Vengeance
-  defaultCursor: {fileID: 0}
-  cursorHotspot: {x: 0, y: 0}
+  defaultCursor: {fileID: 2800000, guid: 7ebcb2ae24ba048a7807f754ae3ae92e, type: 3}
+  cursorHotspot: {x: 6, y: 6}
   m_SplashScreenBackgroundColor: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
@@ -138,7 +138,8 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 1.1
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: 11400000, guid: d64e9584e776f2548b31704a85ef0de7, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
