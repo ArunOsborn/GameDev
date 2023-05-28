@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FrameByFrame : MonoBehaviour
 {
+    // THIS IS FOR DEBUGGING PURPOSES ONLY
     public bool frameByFrame;
     private bool unpause;
     // Start is called before the first frame update
