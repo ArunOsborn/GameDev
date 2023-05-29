@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneHandler : MonoBehaviour
 {
@@ -21,7 +22,17 @@ public class SceneHandler : MonoBehaviour
     {
         PlayerPrefs.SetString("Selected Level", "Level "+levelNumber);
         Debug.Log("Set level to "+PlayerPrefs.GetString("Selected Level"));
+        if(SceneManager.GetActiveScene().buildIndex + 1 > PlayerPrefs.GetInt("levelAt"))
+        {
+            PlayerPrefs.SetInt("levelAt", SceneManager.GetActiveScene().buildIndex + 1);
+        }
         ResumeLevel();
+    }
+
+    public void LockedLevels()
+    {
+        PlayerPrefs.SetInt("levelAt", 4);
+        LoadLevelSelect();
     }
 
     public void RestartLevel()
