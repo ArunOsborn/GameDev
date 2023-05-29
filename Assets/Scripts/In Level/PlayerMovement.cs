@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR.Haptics;
+using UnityEngine.Animations.Rigging;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -51,6 +52,10 @@ public class PlayerMovement : MonoBehaviour
     // Sound Effects
     private AudioSource audio;
     [SerializeField] private AudioClip landSound;
+
+    //field for player rig
+    [SerializeField] private Rig playerRig;
+    [SerializeField] public GameObject armTarget;
 
     private void OnEnable()
     {
@@ -119,18 +124,22 @@ public class PlayerMovement : MonoBehaviour
                 float rotateForce = m_move.x/1.5f;
                 float adj = (pivotPosition.y - transform.position.y);
                 float opp = (pivotPosition.x - transform.position.x);
+                armTarget.transform.position = pivotPosition;
+                playerRig.weight = 1.0f;
                 rotateMomentum += opp/2.5f + rotateForce; // Uses opposite to act as a sort of gravity. The further away from the center of the poll, the greater the force to go back to the center is
                 rotateForce += rotateMomentum;
                 this.transform.RotateAround(pivotPosition, new Vector3(0, 0, 1), rotateMomentum); // Swings player
                 rotateMomentum = rotateMomentum / rotateDrag;
                 float angle = Mathf.Atan(opp / adj) * 180 / (float)Math.PI; // SOHCAHTOA T^-1(O/A) converted to degrees from radians
-                Debug.Log("Player angle in relation to swing: " + angle);
+                //Debug.Log("Player angle in relation to swing: " + angle);
                 this.transform.eulerAngles = new Vector3(angle, 90, 0);
                 Physics.SyncTransforms();
-                Debug.Log("New player rotation: " + transform.rotation.eulerAngles);
+                //Debug.Log("New player rotation: " + transform.rotation.eulerAngles);
+                Debug.Log("Position of swing" + pivotPosition);
             }
             else
             {
+                playerRig.weight = 0.0f;
                 if (Grounded)
                 {
                     movementOutputVector.y = -0.02f; // Keeps player stuck to ground
