@@ -32,7 +32,7 @@ public class SceneHandler : MonoBehaviour
     public void LockedLevels()
     {
         PlayerPrefs.SetInt("levelAt", 4);
-        LoadLevelSelect();
+        Debug.Log("Locked levels");
     }
 
     public void RestartLevel()
